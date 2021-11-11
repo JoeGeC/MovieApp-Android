@@ -6,6 +6,6 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails
 
 class MovieDetailsUseCaseImpl(private val repository: MovieDetailsRepository) {
-    suspend fun getMovieDetailsOf(movieId: Int): Either<MovieDetails?, ErrorEntity?> =
+    suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> =
         repository.getMovieDetailsOf(movieId)
 }

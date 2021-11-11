@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel : ViewModel() {
-    private val useCase = Config.movieDetailsUseCase
+    private val useCase = config.movieDetailsUseCase
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
     private var details: MovieDetails? = null
@@ -19,7 +19,7 @@ class MovieDetailsViewModel : ViewModel() {
     val tagline: String get() = details!!.tagline
     val overview: String get() = details!!.overview
 
-    fun getMovieDetailsOf(movieId: Int){
+    fun getMovieDetailsOf(movieId: Long){
         viewModelScope.launch(Dispatchers.IO) {
             _isLoading.value = true
             val result = useCase.getMovieDetailsOf(movieId)
