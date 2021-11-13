@@ -1,9 +1,7 @@
 package joe.barker.data.repository
 
-import joe.barker.data.JsonAdapter
-import joe.barker.data.Result
 import joe.barker.data.boundary.MovieDetailsLocal
-import joe.barker.data.remote.MovieDetailsRemote
+import joe.barker.data.boundary.MovieDetailsRemote
 import joe.barker.data.response.MovieDetailsResponse
 import joe.barker.domain.boundary.MovieDetailsRepository
 import joe.barker.domain.entity.Either
@@ -11,25 +9,27 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import joe.barker.data.Result
 
-class MovieDetailsRepositoryImpl(private val movieDetailsLocal: MovieDetailsLocal) : Repository(), MovieDetailsRepository {
-    private val remote = retrofit.create(MovieDetailsRemote::class.java)
+class MovieDetailsRepositoryImpl(
+    private val local: MovieDetailsLocal,
+    private val remote: MovieDetailsRemote
+) : MovieDetailsRepository {
 
     override suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
-        val response = movieDetailsLocal.getMovie(movieId)
+        val response = local.getMovie(movieId)
             ?: return getMovieDetailsFromRemote(movieId)
         return Either.Success(response.convert())
     }
 
     private fun getMovieDetailsFromRemote(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
-        val result = remote.retrieveMovie(movieId, API_KEY).execute()
-        return if (result.isSuccessful) {
-            val success = Result.Success(result.body())
-            movieDetailsLocal.insertAll(success.value as MovieDetailsResponse)
+        val response = remote.getMovieDetails(movieId)
+        return if(response.isSuccess){
+            val success = Result.Success(response.body)
+            local.insertAll(success.value as MovieDetailsResponse)
             Either.Success(success.convert())
         } else {
-            val errorResponse = JsonAdapter.convertToError(result)
-            val failure = Result.Failure(errorResponse)
+            val failure = Result.Failure(response)
             Either.Failure(failure.convert())
         }
     }

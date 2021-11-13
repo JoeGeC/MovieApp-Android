@@ -1,4 +1,4 @@
-package joe.barker.data.remote
+package joe.barker.remote
 
 import joe.barker.data.response.MovieDetailsResponse
 import retrofit2.Call
@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface MovieDetailsRemote {
+interface MovieDetailsRemoteCalls {
     @GET("movie/{id}")
     fun retrieveMovie(
         @Path("id") id: Long,

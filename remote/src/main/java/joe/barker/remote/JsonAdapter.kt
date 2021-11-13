@@ -1,4 +1,4 @@
-package joe.barker.data
+package joe.barker.remote
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
