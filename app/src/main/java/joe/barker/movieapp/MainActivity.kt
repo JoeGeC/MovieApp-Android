@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import joe.barker.movieapp.ui.LoadingUi
@@ -21,11 +22,16 @@ class MainActivity : ComponentActivity() {
         setContent {
             val isLoading by viewModel.isLoading.collectAsState()
             MovieAppTheme {
-                when {
-                    isLoading -> LoadingUi()
-                    else -> MovieDetailsUi(viewModel)
-                }
+                setContent(isLoading)
             }
+        }
+    }
+
+    @Composable
+    private fun setContent(isLoading: Boolean) {
+        when {
+            isLoading -> LoadingUi()
+            else -> MovieDetailsUi(viewModel)
         }
     }
 }

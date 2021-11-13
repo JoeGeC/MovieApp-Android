@@ -15,7 +15,7 @@ class MovieDetailsViewModel : ViewModel() {
     val isLoading: StateFlow<Boolean> = _isLoading
     private var details: MovieDetails? = null
     val title: String get() = details!!.title
-    val releaseYear: Int get() = details!!.releaseDate.year
+    val releaseYear: String get() = details!!.releaseDate.year.toString()
     val tagline: String get() = details!!.tagline
     val overview: String get() = details!!.overview
 

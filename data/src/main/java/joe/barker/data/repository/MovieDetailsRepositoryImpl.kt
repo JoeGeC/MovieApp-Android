@@ -16,10 +16,9 @@ class MovieDetailsRepositoryImpl(private val movieDetailsLocal: MovieDetailsLoca
     private val remote = retrofit.create(MovieDetailsRemote::class.java)
 
     override suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
-        val movieDetails = movieDetailsLocal.getMovie(movieId)
-        if(movieDetails == null)
-            return getMovieDetailsFromRemote(movieId)
-        return Either.Success(movieDetails.convert())
+        val response = movieDetailsLocal.getMovie(movieId)
+            ?: return getMovieDetailsFromRemote(movieId)
+        return Either.Success(response.convert())
     }
 
     private fun getMovieDetailsFromRemote(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
