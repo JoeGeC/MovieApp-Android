@@ -11,10 +11,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import joe.barker.data.Result
 
-class MovieDetailsRepositoryImpl(
-    private val local: MovieDetailsLocal,
-    private val remote: MovieDetailsRemote
-) : MovieDetailsRepository {
+class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private val remote: MovieDetailsRemote) : MovieDetailsRepository {
 
     override suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
         val response = local.getMovie(movieId)
@@ -27,21 +24,10 @@ class MovieDetailsRepositoryImpl(
         return if(response.isSuccess){
             val success = Result.Success(response.body)
             local.insertAll(success.value as MovieDetailsResponse)
-            Either.Success(success.convert())
-        } else {
-            val failure = Result.Failure(response)
-            Either.Failure(failure.convert())
-        }
+            Either.Success(success.value.convert())
+        } else Either.Failure((response as Result.Failure).convert())
     }
 }
-
-private fun Result.Success<MovieDetailsResponse?>.convert() = MovieDetails(
-    (this.value as MovieDetailsResponse).id!!,
-    this.value.title!!,
-    LocalDate.parse(this.value.release_date, DateTimeFormatter.ISO_DATE),
-    this.value.tagline!!,
-    this.value.overview!!
-)
 
 private fun MovieDetailsResponse.convert() = MovieDetails(
     this.id!!,
