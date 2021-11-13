@@ -3,6 +3,7 @@ package joe.barker.config
 import android.content.Context
 import joe.barker.data.repository.MovieDetailsRepositoryImpl
 import joe.barker.domain.MovieDetailsUseCaseImpl
+import joe.barker.local.LocalProvider
 import joe.barker.remote.RemoteProvider
 
 class Config(context: Context) {
