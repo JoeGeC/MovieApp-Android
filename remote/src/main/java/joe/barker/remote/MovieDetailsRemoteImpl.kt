@@ -1,6 +1,6 @@
 package joe.barker.remote
 
-import joe.barker.data.Result
+import joe.barker.data.response.Result
 import joe.barker.data.boundary.MovieDetailsRemote
 import joe.barker.data.response.ErrorResponse
 import joe.barker.data.response.MovieDetailsResponse

@@ -1,6 +1,5 @@
-package joe.barker.data
+package joe.barker.data.response
 
-import joe.barker.data.response.ErrorResponse
 import joe.barker.domain.entity.ErrorEntity
 
 sealed class Result<out S, out F> {

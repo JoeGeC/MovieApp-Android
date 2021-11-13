@@ -5,6 +5,7 @@ import joe.barker.data.boundary.MovieDetailsRemote
 import joe.barker.data.repository.MovieDetailsRepositoryImpl
 import joe.barker.data.response.ErrorResponse
 import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.data.response.Result
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails

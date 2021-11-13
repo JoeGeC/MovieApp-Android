@@ -1,10 +1,10 @@
 package joe.barker.data.repository
 
-import joe.barker.data.Result
 import joe.barker.data.adapter.convert
 import joe.barker.data.boundary.MovieDetailsLocal
 import joe.barker.data.boundary.MovieDetailsRemote
 import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.data.response.Result
 import joe.barker.domain.boundary.MovieDetailsRepository
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
