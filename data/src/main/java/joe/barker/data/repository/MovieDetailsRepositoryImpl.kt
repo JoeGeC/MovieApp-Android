@@ -22,7 +22,7 @@ class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private v
         val response = remote.getMovieDetails(movieId)
         return if (response.isSuccess) {
             val success = Result.Success(response.body)
-            local.insertAll(success.value as MovieDetailsResponse)
+            local.insert(success.value as MovieDetailsResponse)
             Either.Success(success.value.convert())
         } else Either.Failure((response as Result.Failure).convert())
     }

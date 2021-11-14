@@ -13,11 +13,3 @@ data class MovieDetails(
     @ColumnInfo(name = "overview") val overview: String?,
     @ColumnInfo(name = "release_date") val release_date: String?
 )
-
-fun MovieDetails.convert() = MovieDetailsResponse (
-    this.id,
-    this.title,
-    this.tagline,
-    this.overview,
-    this.release_date
-)

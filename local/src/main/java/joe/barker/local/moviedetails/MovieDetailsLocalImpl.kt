@@ -5,7 +5,7 @@ import joe.barker.data.response.MovieDetailsResponse
 import joe.barker.local.MovieDatabase
 
 class MovieDetailsLocalImpl(private val database: MovieDatabase) : MovieDetailsLocal {
-    override fun insertAll(movieDetailsResponse: MovieDetailsResponse) {
+    override fun insert(movieDetailsResponse: MovieDetailsResponse) {
         database.movieDetailsDao().insertAll(movieDetailsResponse.convert())
     }
 
@@ -16,10 +16,4 @@ class MovieDetailsLocalImpl(private val database: MovieDatabase) : MovieDetailsL
     }
 }
 
-private fun MovieDetailsResponse.convert() = MovieDetails(
-    this.id!!,
-    this.title,
-    this.tagline,
-    this.overview,
-    this.release_date
-)
+

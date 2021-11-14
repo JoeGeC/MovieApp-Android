@@ -55,7 +55,7 @@ class MovieDetailsRepositoryShould {
 
         val expected = Either.Success(movieDetails)
         assertEquals(result, expected)
-        verify(local).insertAll(movieDetailsResponse)
+        verify(local).insert(movieDetailsResponse)
     }
 
     @Test
