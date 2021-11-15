@@ -9,44 +9,59 @@ import okhttp3.MediaType
 import okhttp3.ResponseBody
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.doThrow
 import org.mockito.kotlin.mock
 import retrofit2.Response
 import retrofit2.mock.Calls
+import java.lang.Exception
 
 class MovieDetailsRemoteShould {
     private val apiKey = BaseRemote.API_KEY
+    private val movieId: Long = 1
+    private val errorCode = 404
+    private val errorsJson = "{\n" +
+            "    \"success\": false,\n" +
+            "    \"status_code\": $errorCode,\n" +
+            "    \"status_message\": \"The resource you requested could not be found.\"\n" +
+            "}"
 
     @Test
     fun `Return movie details response on successful call`(){
-        val id: Long = 1
-        val responseBody = MovieDetailsResponse(id, "title", "tagline", "overview", "2020-01-02")
+        val response = MovieDetailsResponse(movieId, "title", "tagline", "overview", "2020-01-02")
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
-            on { retrieveMovie(id, apiKey) }.doReturn(Calls.response(responseBody))
+            on { retrieveMovie(movieId, apiKey) }.doReturn(Calls.response(response))
         }
         val repository = MovieDetailsRemoteImpl(remoteCalls)
 
-        val expected = Result.Success(responseBody)
-        assertEquals(expected, repository.getMovieDetails(id))
+        val expected = Result.Success(response)
+        assertEquals(expected, repository.getMovieDetails(movieId))
     }
 
     @Test
-    fun `Return movie details response on failure call`(){
-        val id: Long = 1
-        val errorCode = 404
-        val json = "{\n" +
-                "    \"success\": false,\n" +
-                "    \"status_code\": $errorCode,\n" +
-                "    \"status_message\": \"The resource you requested could not be found.\"\n" +
-                "}"
-        val response = Response.error<MovieDetailsResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), json))
+    fun `Return error response on failure call`(){
+        val response = Response.error<MovieDetailsResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
-            on { retrieveMovie(id, apiKey) }.doReturn(Calls.response(response))
+            on { retrieveMovie(movieId, apiKey) }.doReturn(Calls.response(response))
         }
         val repository = MovieDetailsRemoteImpl(remoteCalls)
 
         val errorResponse = ErrorResponse(errorCode, "The resource you requested could not be found.")
         val expected = Result.Failure(errorResponse)
-        assertEquals(expected, repository.getMovieDetails(id))
+        assertEquals(expected, repository.getMovieDetails(movieId))
+    }
+
+    @Test
+    fun `Return error response on exception`(){
+        val errorMessage = "error"
+        val remoteCalls = mock<MovieDetailsRemoteCalls> {
+            on { retrieveMovie(movieId, apiKey) } doAnswer { throw Exception(errorMessage) }
+        }
+        val repository = MovieDetailsRemoteImpl(remoteCalls)
+
+        val errorResponse = ErrorResponse(-1, errorMessage)
+        val expected = Result.Failure(errorResponse)
+        assertEquals(expected, repository.getMovieDetails(movieId))
     }
 }
