@@ -1,5 +1,7 @@
-package joe.barker.remote
+package joe.barker.remote.movieDetails
 
+import joe.barker.remote.BaseRemote
+import joe.barker.remote.JsonAdapter
 import joe.barker.repository.response.Result
 import joe.barker.repository.boundary.MovieDetailsRemote
 import joe.barker.repository.response.ErrorResponse

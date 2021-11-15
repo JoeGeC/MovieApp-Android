@@ -1,4 +1,4 @@
-package joe.barker.remote
+package joe.barker.remote.movieDetails
 
 import joe.barker.repository.response.MovieDetailsResponse
 import retrofit2.Call

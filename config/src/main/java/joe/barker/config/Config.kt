@@ -10,7 +10,8 @@ class Config(context: Context) {
     private val localProvider by lazy { LocalProvider(context) }
     private val remoteProvider by lazy { RemoteProvider() }
 
-    private val movieDetailsRepository by lazy { MovieDetailsRepositoryImpl(localProvider.movieDetails, remoteProvider.movieDetails) }
+    private val movieDetailsRepository by lazy {
+        MovieDetailsRepositoryImpl(localProvider.movieDetails, remoteProvider.movieDetails) }
 
     val movieDetailsUseCase by lazy { MovieDetailsUseCaseImpl(movieDetailsRepository) }
 }
