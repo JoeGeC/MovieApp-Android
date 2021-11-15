@@ -1,17 +1,10 @@
 package joe.barker.config
 
-import android.content.Context
-import joe.barker.repository.repository.MovieDetailsRepositoryImpl
-import joe.barker.domain.MovieDetailsUseCaseImpl
-import joe.barker.local.LocalProvider
-import joe.barker.remote.RemoteProvider
+import joe.barker.domain.boundary.MovieDetailsRepository
+import joe.barker.domain.movieDetails.MovieDetailsUseCase
 
-class Config(context: Context) {
-    private val localProvider by lazy { LocalProvider(context) }
-    private val remoteProvider by lazy { RemoteProvider() }
+interface Config {
+    val movieDetailsRepository: MovieDetailsRepository
 
-    private val movieDetailsRepository by lazy {
-        MovieDetailsRepositoryImpl(localProvider.movieDetails, remoteProvider.movieDetails) }
-
-    val movieDetailsUseCase by lazy { MovieDetailsUseCaseImpl(movieDetailsRepository) }
+    val movieDetailsUseCase: MovieDetailsUseCase
 }

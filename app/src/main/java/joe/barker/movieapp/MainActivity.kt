@@ -4,9 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
 import joe.barker.movieapp.ui.MovieDetailsUi
 import joe.barker.movieapp.ui.theme.MovieAppTheme
@@ -20,17 +27,19 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         viewModel.getMovieDetailsOf(550)
         setContent {
-            val isLoading by viewModel.isLoading.collectAsState()
             MovieAppTheme {
-                setContent(isLoading)
+                SetContent()
             }
         }
     }
 
     @Composable
-    private fun setContent(isLoading: Boolean) {
+    private fun SetContent() {
+        val isLoading by viewModel.isLoading.collectAsState()
+        val isError by viewModel.error.collectAsState()
         when {
             isLoading -> LoadingUi()
+            isError -> ErrorUi()
             else -> MovieDetailsUi(viewModel)
         }
     }

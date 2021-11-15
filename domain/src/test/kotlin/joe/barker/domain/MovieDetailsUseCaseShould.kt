@@ -1,5 +1,6 @@
 package joe.barker.domain
 
+import joe.barker.domain.movieDetails.MovieDetailsUseCaseImpl
 import joe.barker.domain.boundary.MovieDetailsRepository
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.MovieDetails
