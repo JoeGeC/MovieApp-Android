@@ -1,11 +1,12 @@
 package joe.barker.movieapp
 
 import joe.barker.domain.entity.Either
+import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails
 import joe.barker.domain.movieDetails.MovieDetailsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
@@ -34,5 +35,20 @@ class MovieDetailsViewModelShould {
         assertEquals(releaseYear, viewModel.releaseYear)
         assertEquals(tagline, viewModel.tagline)
         assertEquals(overview, viewModel.overview)
+        assertFalse(viewModel.error.value)
+    }
+
+    @Test
+    fun `Show error on failed movie details`() {
+        val errorMessage = "error"
+        val result = Either.Failure(ErrorEntity(errorMessage))
+        val useCase = mock<MovieDetailsUseCase>{
+            onBlocking { getMovieDetailsOf(id) }.doReturn(result)
+        }
+        val viewModel = MovieDetailsViewModel(useCase)
+
+        runBlocking { viewModel.getMovieDetailsOf(id, Dispatchers.Unconfined) }
+
+        assertTrue(viewModel.error.value)
     }
 }
