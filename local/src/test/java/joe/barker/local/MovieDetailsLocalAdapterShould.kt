@@ -6,7 +6,7 @@ import joe.barker.repository.response.MovieDetailsResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class MovieDetailsAdapterShould {
+class MovieDetailsLocalAdapterShould {
     private val id: Long = 1
     private val title = "title"
     private val tagline = "tagline"
