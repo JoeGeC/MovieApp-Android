@@ -7,7 +7,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MovieApp"
 include ':app'
-include ':data'
+include ':repository'
 include ':domain'
 include ':config'
 include ':local'

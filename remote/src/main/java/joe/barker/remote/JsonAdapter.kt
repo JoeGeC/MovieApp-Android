@@ -2,7 +2,7 @@ package joe.barker.remote
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import joe.barker.data.response.ErrorResponse
+import joe.barker.repository.response.ErrorResponse
 import retrofit2.Response
 
 class JsonAdapter{

@@ -29,7 +29,7 @@ android {
 
 dependencies {
     implementation project(path: ':domain')
-    implementation project(path: ':data')
+    implementation project(path: ':repository')
     implementation project(path: ':local')
     implementation project(path: ':remote')
 }

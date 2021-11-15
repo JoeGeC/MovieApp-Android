@@ -3,7 +3,7 @@ package joe.barker.local
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.local.moviedetails.MovieDetails
 import joe.barker.local.moviedetails.MovieDetailsLocalImpl
 import org.junit.jupiter.api.Assertions.assertEquals

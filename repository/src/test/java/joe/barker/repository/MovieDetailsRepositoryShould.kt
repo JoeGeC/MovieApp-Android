@@ -1,11 +1,11 @@
-package joe.barker.data
+package joe.barker.repository
 
-import joe.barker.data.boundary.MovieDetailsLocal
-import joe.barker.data.boundary.MovieDetailsRemote
-import joe.barker.data.repository.MovieDetailsRepositoryImpl
-import joe.barker.data.response.ErrorResponse
-import joe.barker.data.response.MovieDetailsResponse
-import joe.barker.data.response.Result
+import joe.barker.repository.boundary.MovieDetailsLocal
+import joe.barker.repository.boundary.MovieDetailsRemote
+import joe.barker.repository.repository.MovieDetailsRepositoryImpl
+import joe.barker.repository.response.ErrorResponse
+import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.Result
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails

@@ -3,7 +3,6 @@ package joe.barker.local.moviedetails
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import joe.barker.data.response.MovieDetailsResponse
 
 @Entity
 data class MovieDetails(

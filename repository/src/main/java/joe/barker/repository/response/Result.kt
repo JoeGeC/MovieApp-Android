@@ -1,4 +1,4 @@
-package joe.barker.data.response
+package joe.barker.repository.response
 
 import joe.barker.domain.entity.ErrorEntity
 

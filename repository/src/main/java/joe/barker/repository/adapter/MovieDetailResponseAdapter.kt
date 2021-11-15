@@ -1,6 +1,6 @@
-package joe.barker.data.adapter
+package joe.barker.repository.adapter
 
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.domain.entity.MovieDetails
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

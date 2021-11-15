@@ -1,9 +1,9 @@
 package joe.barker.remote
 
-import joe.barker.data.response.Result
-import joe.barker.data.boundary.MovieDetailsRemote
-import joe.barker.data.response.ErrorResponse
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.Result
+import joe.barker.repository.boundary.MovieDetailsRemote
+import joe.barker.repository.response.ErrorResponse
+import joe.barker.repository.response.MovieDetailsResponse
 
 class MovieDetailsRemoteImpl : BaseRemote(), MovieDetailsRemote {
     private val remote: MovieDetailsRemoteCalls = retrofit.create(MovieDetailsRemoteCalls::class.java)

@@ -1,7 +1,7 @@
-package joe.barker.data
+package joe.barker.repository
 
-import joe.barker.data.adapter.convert
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.adapter.convert
+import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.domain.entity.MovieDetails
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

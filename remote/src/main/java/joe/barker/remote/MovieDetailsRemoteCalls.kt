@@ -1,6 +1,6 @@
 package joe.barker.remote
 
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

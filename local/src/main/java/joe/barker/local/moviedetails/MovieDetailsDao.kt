@@ -14,10 +14,10 @@ interface MovieDetailsDao {
     fun loadAllByIds(movieIds: IntArray): List<MovieDetails>
 
     @Query("SELECT * FROM moviedetails WHERE title LIKE :title LIMIT 1")
-    fun findByTitle(title: String): MovieDetails
+    fun findByTitle(title: String): MovieDetails?
 
     @Query("SELECT * FROM moviedetails WHERE id LIKE :id LIMIT 1")
-    fun findById(id: Long): MovieDetails
+    fun findById(id: Long): MovieDetails?
 
     @Insert
     fun insertAll(vararg movieDetails: MovieDetails)

@@ -1,6 +1,6 @@
 package joe.barker.local.moviedetails
 
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 
 fun MovieDetailsResponse.convert() = MovieDetails(
     this.id!!,

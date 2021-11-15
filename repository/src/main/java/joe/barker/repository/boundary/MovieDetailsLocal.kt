@@ -1,6 +1,6 @@
-package joe.barker.data.boundary
+package joe.barker.repository.boundary
 
-import joe.barker.data.response.MovieDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 
 interface MovieDetailsLocal {
     fun insert(movieDetailsResponse: MovieDetailsResponse)
