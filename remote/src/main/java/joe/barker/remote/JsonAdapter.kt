@@ -9,9 +9,9 @@ class JsonAdapter{
     companion object{
         private val gson = Gson()
 
-        fun <T> convertToError(result: Response<T>) : ErrorResponse {
+        fun <T> convertToError(response: Response<T>) : ErrorResponse {
             val type = object : TypeToken<ErrorResponse>() {}.type
-            return gson.fromJson(result.errorBody()!!.charStream(), type)
+            return gson.fromJson(response.errorBody()!!.charStream(), type)
         }
     }
 }
