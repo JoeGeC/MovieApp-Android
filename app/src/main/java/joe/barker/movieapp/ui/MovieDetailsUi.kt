@@ -15,10 +15,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import joe.barker.domain.entity.MovieDetails
 import joe.barker.movieapp.MovieDetailsViewModel
 import joe.barker.movieapp.R
+import java.time.LocalDate
 
 @Composable
 fun MovieDetailsUi(viewModel: MovieDetailsViewModel) {
@@ -30,6 +33,7 @@ fun MovieDetailsUi(viewModel: MovieDetailsViewModel) {
     }
 }
 
+@Preview
 @Composable
 private fun MoviePoster() {
     Image(
@@ -45,23 +49,62 @@ private fun MoviePoster() {
 @Composable
 private fun MovieDetailsText(viewModel: MovieDetailsViewModel) {
     Column(modifier = Modifier.padding(top = 16.dp, bottom = 16.dp, end = 16.dp)) {
-        Text(
-            text = "${viewModel.title} (${viewModel.releaseYear})",
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = viewModel.tagline,
-            fontSize = 12.sp,
-            fontStyle = FontStyle.Italic
-        )
-        Text(
-            text = "Overview",
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = viewModel.overview,
-            fontSize = 12.sp
-        )
+        TitleText(viewModel.title, viewModel.releaseYear)
+        TaglineText(viewModel.tagline)
+        OverviewLabelText()
+        OverviewText(viewModel.overview)
     }
+}
+
+@Composable
+private fun OverviewText(overview: String) {
+    Text(
+        text = overview,
+        fontSize = 12.sp
+    )
+}
+
+@Preview
+@Composable
+private fun OverviewText() {
+    OverviewText("Overview")
+}
+
+@Preview
+@Composable
+private fun OverviewLabelText() {
+    Text(
+        text = "Overview",
+        fontSize = 13.sp,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+@Composable
+private fun TaglineText(tagline: String) {
+    Text(
+        text = tagline,
+        fontSize = 12.sp,
+        fontStyle = FontStyle.Italic
+    )
+}
+
+@Preview
+@Composable
+private fun TaglineText() {
+    TaglineText("Tagline")
+}
+
+@Composable
+private fun TitleText(title: String, releaseYear: String) {
+    Text(
+        text = "$title ($releaseYear)",
+        fontWeight = FontWeight.Bold
+    )
+}
+
+@Preview
+@Composable
+private fun TitleText() {
+    TitleText("Title", "2020")
 }

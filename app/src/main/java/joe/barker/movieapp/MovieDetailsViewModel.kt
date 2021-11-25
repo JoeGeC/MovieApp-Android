@@ -15,7 +15,7 @@ class MovieDetailsViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
-    private var details: MovieDetails? = null
+    var details: MovieDetails? = null
     val title: String get() = details?.title ?: ""
     val releaseYear: String get() = details?.releaseDate?.year?.toString() ?: ""
     val tagline: String get() = details?.tagline ?: ""

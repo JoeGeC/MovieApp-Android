@@ -27,6 +27,5 @@ class MovieDetailsRemoteImpl(
             val error = ErrorResponse(-1, exception.localizedMessage)
             Result.Failure(error)
         }
-//
     }
 }
