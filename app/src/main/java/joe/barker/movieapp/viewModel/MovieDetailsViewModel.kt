@@ -1,7 +1,6 @@
 package joe.barker.movieapp.viewModel
 
 import androidx.lifecycle.ViewModel
-import joe.barker.domain.entity.MovieDetails
 import joe.barker.domain.movieDetails.MovieDetailsUseCase
 import joe.barker.movieapp.config
 import joe.barker.movieapp.job
@@ -17,19 +16,16 @@ class MovieDetailsViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
-    var details: MovieDetails? = null
-    val title: String get() = details?.title ?: ""
-    val releaseYear: String get() = details?.releaseDate?.year?.toString() ?: ""
-    val tagline: String get() = details?.tagline ?: ""
-    val overview: String get() = details?.overview ?: ""
+    lateinit var model: MovieDetailsModel
 
     fun getMovieDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO){
         job( {
             _isLoading.value = true
             val result = useCase.getMovieDetailsOf(movieId)
-            if (result.isSuccess) details = result.body
+            if (result.isSuccess) model = result.body!!.convert()
             else _error.value = true
             _isLoading.value = false
         }, dispatcher)
     }
 }
+

@@ -32,10 +32,11 @@ class MovieDetailsViewModelShould {
 
         runBlocking { viewModel.getMovieDetailsOf(id, Dispatchers.Unconfined) }
 
-        assertEquals(title, viewModel.title)
-        assertEquals(releaseYear, viewModel.releaseYear)
-        assertEquals(tagline, viewModel.tagline)
-        assertEquals(overview, viewModel.overview)
+        assertEquals(id, viewModel.model.id)
+        assertEquals(title, viewModel.model.title)
+        assertEquals(releaseYear, viewModel.model.releaseYear)
+        assertEquals(tagline, viewModel.model.tagline)
+        assertEquals(overview, viewModel.model.overview)
         assertFalse(viewModel.error.value)
     }
 

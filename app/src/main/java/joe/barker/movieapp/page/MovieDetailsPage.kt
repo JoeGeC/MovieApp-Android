@@ -18,6 +18,6 @@ fun MovieDetailsPage() {
     when {
         isLoading -> LoadingUi()
         isError -> ErrorUi()
-        else -> MovieDetailsUi(viewModel)
+        else -> MovieDetailsUi(viewModel.model)
     }
 }

@@ -18,15 +18,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import joe.barker.movieapp.viewModel.MovieDetailsViewModel
 import joe.barker.movieapp.R
+import joe.barker.movieapp.viewModel.MovieDetailsModel
 
 @Composable
-fun MovieDetailsUi(viewModel: MovieDetailsViewModel) {
+fun MovieDetailsUi(model: MovieDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
         Row{
             MoviePoster()
-            MovieDetailsText(viewModel)
+            MovieDetailsText(model)
         }
     }
 }
@@ -45,12 +45,12 @@ private fun MoviePoster() {
 }
 
 @Composable
-private fun MovieDetailsText(viewModel: MovieDetailsViewModel) {
+private fun MovieDetailsText(details: MovieDetailsModel) {
     Column(modifier = Modifier.padding(top = 16.dp, bottom = 16.dp, end = 16.dp)) {
-        TitleText(viewModel.title, viewModel.releaseYear)
-        TaglineText(viewModel.tagline)
+        TitleText(details.title, details.releaseYear)
+        TaglineText(details.tagline)
         OverviewLabelText()
-        OverviewText(viewModel.overview)
+        OverviewText(details.overview)
     }
 }
 
