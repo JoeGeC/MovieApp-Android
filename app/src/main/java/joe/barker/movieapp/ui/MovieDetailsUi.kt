@@ -18,10 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import joe.barker.domain.entity.MovieDetails
-import joe.barker.movieapp.MovieDetailsViewModel
+import joe.barker.movieapp.viewModel.MovieDetailsViewModel
 import joe.barker.movieapp.R
-import java.time.LocalDate
 
 @Composable
 fun MovieDetailsUi(viewModel: MovieDetailsViewModel) {

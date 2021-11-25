@@ -1,8 +1,10 @@
-package joe.barker.movieapp
+package joe.barker.movieapp.viewModel
 
 import androidx.lifecycle.ViewModel
 import joe.barker.domain.entity.MovieDetails
 import joe.barker.domain.movieDetails.MovieDetailsUseCase
+import joe.barker.movieapp.config
+import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
