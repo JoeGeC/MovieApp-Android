@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import joe.barker.movieapp.viewModel.MovieDetailsViewModel
+import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
 import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
 import joe.barker.movieapp.ui.MovieDetailsUi

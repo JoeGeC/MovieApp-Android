@@ -1,4 +1,4 @@
-package joe.barker.movieapp.viewModel
+package joe.barker.movieapp.movieDetails
 
 import androidx.lifecycle.ViewModel
 import joe.barker.domain.movieDetails.MovieDetailsUseCase

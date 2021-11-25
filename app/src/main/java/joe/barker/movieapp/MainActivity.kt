@@ -34,7 +34,6 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
