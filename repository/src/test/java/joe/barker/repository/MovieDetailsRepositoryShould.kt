@@ -44,7 +44,7 @@ class MovieDetailsRepositoryShould {
         val result = runBlocking { repository.getMovieDetailsOf(MovieDetailsRepoTestProvider.movieId) }
 
         val expected = Either.Success(MovieDetailsRepoTestProvider.movieDetails)
-        assertEquals(result, expected)
+        assertEquals(expected, result)
         verify(local).insert(MovieDetailsRepoTestProvider.movieDetailsResponse)
     }
 
@@ -54,7 +54,7 @@ class MovieDetailsRepositoryShould {
             on { getMovie(MovieDetailsRepoTestProvider.movieId) } doReturn null
         }
         val errorMessage = "error"
-        val errorResponse = ErrorResponse(1, errorMessage)
+        val errorResponse = ErrorResponse(errorMessage)
         val remote = mock<MovieDetailsRemote> {
             on { getMovieDetails(MovieDetailsRepoTestProvider.movieId) } doReturn Result.Failure(errorResponse)
         }
@@ -64,6 +64,6 @@ class MovieDetailsRepositoryShould {
 
         val error = ErrorEntity(errorMessage)
         val expected = Either.Failure(error)
-        assertEquals(result, expected)
+        assertEquals(expected, result)
     }
 }
