@@ -1,22 +1,17 @@
-package joe.barker.remote.movieDetails
+package joe.barker.remote.popularMovies
 
 import joe.barker.remote.BaseRemote
 import joe.barker.remote.JsonAdapter
-import joe.barker.repository.response.Result
-import joe.barker.repository.boundary.MovieDetailsRemote
+import joe.barker.repository.boundary.PopularMoviesRemote
 import joe.barker.repository.response.ErrorResponse
-import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.PopularMoviesResponse
+import joe.barker.repository.response.Result
 import java.lang.Exception
 
-class MovieDetailsRemoteImpl(
-    private val remote: MovieDetailsRemoteCalls = retrofit.create(
-        MovieDetailsRemoteCalls::class.java
-    )
-) : BaseRemote(), MovieDetailsRemote {
-
-    override fun getMovieDetails(movieId: Long): Result<MovieDetailsResponse?, ErrorResponse?> {
+class PopularMoviesRemoteImpl(private val remote: PopularMoviesRemoteCalls) : PopularMoviesRemote{
+    override fun getPopularMovies(): Result<PopularMoviesResponse?, ErrorResponse?> {
         return try{
-            val result = remote.retrieveMovie(movieId, API_KEY).execute()
+            val result = remote.retrievePopularMovies(BaseRemote.API_KEY).execute()
             return if (result.isSuccessful) {
                 Result.Success(result.body())
             } else {
