@@ -30,7 +30,7 @@ fun PopularMoviesPage(navController: NavHostController) {
             "Venom: Let There Be Carnage",
             "15 Oct 2021",
             7.2f,
-            "https://image.tmdb.org/t/p/w500/rjkmN1dniUHVYAtwuV3Tji7FsDO.jpg"
+            "rjkmN1dniUHVYAtwuV3Tji7FsDO"
         )
     )
     LazyRow {
@@ -45,10 +45,10 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
     Column(modifier = Modifier
         .width(180.dp)
         .padding(8.dp)
-        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}")} )) {
+        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}/${movie.posterId}")} )) {
         Box {
             Image(
-                painter = rememberImagePainter(movie.posterUrl),
+                painter = rememberImagePainter(movie.posterId.toW500Url()),
                 contentDescription = "Movie poster",
                 modifier = Modifier
                     .padding(bottom = 16.dp)
@@ -97,3 +97,5 @@ fun percentageCircleColor(percentage: Float): Color {
     if (percentage < 7) return Color.Yellow
     return Color.Green
 }
+
+fun String.toW500Url() = "https://image.tmdb.org/t/p/w500/${this}.jpg"

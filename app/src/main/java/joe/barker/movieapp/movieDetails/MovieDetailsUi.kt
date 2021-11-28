@@ -1,4 +1,4 @@
-package joe.barker.movieapp.ui
+package joe.barker.movieapp.movieDetails
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -12,30 +12,29 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import joe.barker.movieapp.R
-import joe.barker.movieapp.movieDetails.MovieDetailsModel
+import coil.compose.rememberImagePainter
+import joe.barker.movieapp.popularMovies.toW500Url
 
 @Composable
-fun MovieDetailsUi(model: MovieDetailsModel) {
+fun MovieDetailsUi(model: MovieDetailsModel, posterId: String?) {
     Surface(color = MaterialTheme.colors.background) {
         Row{
-            MoviePoster()
+            MoviePoster(posterId)
             MovieDetailsText(model)
         }
     }
 }
 
-@Preview
 @Composable
-private fun MoviePoster() {
+private fun MoviePoster(posterId: String?) {
+    if(posterId == null) return
     Image(
-        painter = painterResource(R.drawable.fight_club),
+        painter = rememberImagePainter(posterId.toW500Url()),
         contentDescription = "Movie Poster",
         Modifier
             .clip(RoundedCornerShape(10.dp))

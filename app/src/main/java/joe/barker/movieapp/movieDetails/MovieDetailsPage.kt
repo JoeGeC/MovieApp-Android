@@ -4,13 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
-import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
 import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
-import joe.barker.movieapp.ui.MovieDetailsUi
 
 @Composable
-fun MovieDetailsPage(movieId: Long?) {
+fun MovieDetailsPage(movieId: Long?, posterUrl: String?) {
     val viewModel = viewModel<MovieDetailsViewModel>()
     if(movieId != null) viewModel.getMovieDetailsOf(movieId)
     val isLoading by viewModel.isLoading.collectAsState()
@@ -18,6 +16,6 @@ fun MovieDetailsPage(movieId: Long?) {
     when {
         isLoading -> LoadingUi()
         isError -> ErrorUi()
-        else -> MovieDetailsUi(viewModel.model)
+        else -> MovieDetailsUi(viewModel.model, posterUrl)
     }
 }

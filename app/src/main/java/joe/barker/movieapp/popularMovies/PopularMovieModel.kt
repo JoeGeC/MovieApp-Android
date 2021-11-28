@@ -5,7 +5,7 @@ class PopularMovieModel(
     val title: String,
     val releaseDate: String,
     val voteAverage: Float,
-    val posterUrl: String
+    val posterId: String
 ) {
 
 }
