@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
+import joe.barker.movieapp.extension.toW500Url
 
 @Composable
 fun PopularMoviesPage(navController: NavHostController) {
@@ -98,4 +99,3 @@ fun percentageCircleColor(percentage: Float): Color {
     return Color.Green
 }
 
-fun String.toW500Url() = "https://image.tmdb.org/t/p/w500/${this}.jpg"

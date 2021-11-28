@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
-import joe.barker.movieapp.popularMovies.toW500Url
+import joe.barker.movieapp.extension.toW500Url
 
 @Composable
 fun MovieDetailsUi(model: MovieDetailsModel, posterId: String?) {
@@ -37,9 +37,9 @@ private fun MoviePoster(posterId: String?) {
         painter = rememberImagePainter(posterId.toW500Url()),
         contentDescription = "Movie Poster",
         Modifier
+            .padding(16.dp)
             .clip(RoundedCornerShape(10.dp))
             .width(150.dp)
-            .padding(16.dp),
     )
 }
 
