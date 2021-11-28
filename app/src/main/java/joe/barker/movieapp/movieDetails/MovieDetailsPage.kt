@@ -10,7 +10,7 @@ import joe.barker.movieapp.ui.LoadingUi
 @Composable
 fun MovieDetailsPage(movieId: Long?, posterUrl: String?) {
     val viewModel = viewModel<MovieDetailsViewModel>()
-    if(movieId != null) viewModel.getMovieDetailsOf(movieId)
+    if(movieId != null) viewModel.fetchMovieDetailsOf(movieId)
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {

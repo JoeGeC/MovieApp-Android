@@ -65,12 +65,12 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
                     .align(Alignment.BottomEnd)
             ) {
                 CircularProgressIndicator(
-                    progress = movie.voteAverage / 10,
-                    color = percentageCircleColor(movie.voteAverage),
+                    progress = movie.score / 10,
+                    color = percentageCircleColor(movie.score),
                     strokeWidth = 2.dp
                 )
                 Text(
-                    text = "${movie.voteAverage.asPercentage()}%",
+                    text = "${movie.score.asPercentage()}%",
                     color = Color.White,
                     textAlign = TextAlign.Center,
                     fontSize = 13.sp,
@@ -84,7 +84,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
             modifier = Modifier.padding(horizontal = 12.dp)
         )
         Text(
-            text = movie.releaseDate,
+            text = movie.releaseYear,
             color = Color.Gray,
             modifier = Modifier.padding(horizontal = 12.dp)
         )

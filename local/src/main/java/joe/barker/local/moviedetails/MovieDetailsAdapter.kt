@@ -7,7 +7,9 @@ fun MovieDetailsResponse.convert() = MovieDetails(
     this.title,
     this.tagline,
     this.overview,
-    this.release_date
+    this.release_date,
+    this.poster_path,
+    this.vote_average,
 )
 
 fun MovieDetails.convert() = MovieDetailsResponse (
@@ -15,5 +17,7 @@ fun MovieDetails.convert() = MovieDetailsResponse (
     this.title,
     this.tagline,
     this.overview,
-    this.release_date
+    this.release_date,
+    this.poster_path,
+    this.vote_average
 )

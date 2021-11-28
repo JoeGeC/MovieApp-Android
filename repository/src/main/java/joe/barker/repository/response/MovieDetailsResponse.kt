@@ -6,5 +6,7 @@ data class MovieDetailsResponse(
     val title: String?,
     val tagline: String?,
     val overview: String?,
-    val release_date: String?
+    val release_date: String?,
+    val poster_path: String?,
+    val vote_average: Float?
 )

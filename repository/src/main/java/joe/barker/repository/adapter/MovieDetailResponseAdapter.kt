@@ -10,7 +10,9 @@ fun MovieDetailsResponse.convert() = MovieDetails(
     title.orEmpty(),
     convertDate(),
     tagline.orEmpty(),
-    overview.orEmpty()
+    overview.orEmpty(),
+    poster_path.orEmpty(),
+    vote_average ?: 0f
 )
 
 private fun MovieDetailsResponse.convertDate(): LocalDate {

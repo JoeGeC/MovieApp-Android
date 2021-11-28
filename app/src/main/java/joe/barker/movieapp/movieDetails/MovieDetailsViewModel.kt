@@ -18,7 +18,7 @@ class MovieDetailsViewModel(
     val error: StateFlow<Boolean> = _error
     lateinit var model: MovieDetailsModel
 
-    fun getMovieDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO){
+    fun fetchMovieDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO){
         job( {
             _isLoading.value = true
             val result = useCase.getMovieDetailsOf(movieId)
