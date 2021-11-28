@@ -28,13 +28,3 @@ class PopularMoviesViewModel(
         }, dispatcher)
     }
 }
-
-private fun List<MovieDetails>.convert(): List<PopularMovieModel> = this.map{
-    PopularMovieModel(
-        it.id,
-        it.title,
-        it.releaseDate.year.toString(),
-        it.score,
-        it.posterId
-    )
-}
