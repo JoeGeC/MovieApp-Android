@@ -1,7 +1,6 @@
 package joe.barker.movieapp.popularMovies
 
 import androidx.lifecycle.ViewModel
-import joe.barker.domain.entity.MovieDetails
 import joe.barker.domain.popular.PopularMoviesUseCase
 import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher
@@ -21,7 +20,7 @@ class PopularMoviesViewModel(
     fun fetchPopularMovies(dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         job( {
             _isLoading.value = true
-            val result = useCase.fetchPopularMovies()
+            val result = useCase.getPopularMovies()
             if (result.isSuccess) model = result.body!!.convert()
             else _error.value = true
             _isLoading.value = false

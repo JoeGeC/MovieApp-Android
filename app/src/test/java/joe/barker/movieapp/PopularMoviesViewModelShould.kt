@@ -2,9 +2,7 @@ package joe.barker.movieapp
 
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.domain.movieDetails.MovieDetailsUseCase
 import joe.barker.domain.popular.PopularMoviesUseCase
-import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
 import joe.barker.movieapp.popularMovies.PopularMoviesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -20,7 +18,7 @@ class PopularMoviesViewModelShould {
     fun `Get popular movies from use case`(){
         val result = Either.Success(movieList)
         val useCase = mock<PopularMoviesUseCase>{
-            onBlocking { fetchPopularMovies() }.doReturn(result)
+            onBlocking { getPopularMovies() }.doReturn(result)
         }
         val viewModel = PopularMoviesViewModel(useCase)
 
@@ -53,7 +51,7 @@ class PopularMoviesViewModelShould {
         val errorMessage = "error"
         val result = Either.Failure(ErrorEntity(errorMessage))
         val useCase = mock<PopularMoviesUseCase>{
-            onBlocking { fetchPopularMovies() }.doReturn(result)
+            onBlocking { getPopularMovies() }.doReturn(result)
         }
         val viewModel = PopularMoviesViewModel(useCase)
 
