@@ -5,12 +5,13 @@ import joe.barker.repository.boundary.MovieDetailsLocal
 import joe.barker.repository.boundary.MovieDetailsRemote
 import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.repository.response.Result
-import joe.barker.domain.boundary.MovieDetailsRepository
+import joe.barker.domain.boundary.repository.MovieDetailsRepository
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MovieDetails
 
-class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private val remote: MovieDetailsRemote) : MovieDetailsRepository {
+class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private val remote: MovieDetailsRemote) :
+    MovieDetailsRepository {
 
     override suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
         val response = local.getMovie(movieId)

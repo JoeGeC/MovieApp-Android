@@ -1,7 +1,8 @@
 package joe.barker.movieapp.popularMovies
 
 import androidx.lifecycle.ViewModel
-import joe.barker.domain.popular.PopularMoviesUseCase
+import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
+import joe.barker.movieapp.config
 import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -9,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class PopularMoviesViewModel(
-    private val useCase: PopularMoviesUseCase
+    private val useCase: PopularMoviesUseCase = config.popularMoviesUseCase
 ) : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading

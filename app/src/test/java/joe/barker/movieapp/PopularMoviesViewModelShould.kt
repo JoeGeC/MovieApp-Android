@@ -2,7 +2,7 @@ package joe.barker.movieapp
 
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.domain.popular.PopularMoviesUseCase
+import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
 import joe.barker.movieapp.popularMovies.PopularMoviesViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

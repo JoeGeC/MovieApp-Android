@@ -1,7 +1,7 @@
 package joe.barker.movieapp.movieDetails
 
 import androidx.lifecycle.ViewModel
-import joe.barker.domain.movieDetails.MovieDetailsUseCase
+import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
 import joe.barker.movieapp.config
 import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher

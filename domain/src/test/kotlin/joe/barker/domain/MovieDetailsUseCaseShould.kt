@@ -1,8 +1,8 @@
 package joe.barker.domain
 
-import joe.barker.domain.boundary.MovieDetailsRepository
+import joe.barker.domain.boundary.repository.MovieDetailsRepository
 import joe.barker.domain.entity.Either
-import joe.barker.domain.movieDetails.MovieDetailsUseCaseImpl
+import joe.barker.domain.useCase.MovieDetailsUseCaseImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

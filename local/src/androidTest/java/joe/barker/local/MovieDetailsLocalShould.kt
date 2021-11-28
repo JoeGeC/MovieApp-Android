@@ -20,8 +20,10 @@ class MovieDetailsLocalShould {
     private val tagline = "tagline"
     private val overview = "overview"
     private val releaseDate = "2020-01-02"
-    private val movieDetails = MovieDetails(id, title, tagline, overview, releaseDate)
-    private val movieDetailsResponse = MovieDetailsResponse(id, title, tagline, overview, releaseDate)
+    private val posterId = "2020-01-02"
+    private val score = 1.1f
+    private val movieDetails = MovieDetails(id, title, tagline, overview, releaseDate, posterId, score)
+    private val movieDetailsResponse = MovieDetailsResponse(id, title, tagline, overview, releaseDate, posterId, score)
     private val local = MovieDetailsLocalImpl(database)
 
     @Test

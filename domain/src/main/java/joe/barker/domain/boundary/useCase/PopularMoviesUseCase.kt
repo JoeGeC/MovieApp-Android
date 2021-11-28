@@ -1,4 +1,4 @@
-package joe.barker.domain.popular
+package joe.barker.domain.boundary.useCase
 
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
