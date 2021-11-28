@@ -17,6 +17,6 @@ fun PopularMoviesPage(navController: NavHostController) {
     when {
         isLoading -> LoadingUi()
         isError -> ErrorUi()
-        else -> PopularMoviesUi(viewModel.movieList, navController)
+        else -> PopularMoviesUi(viewModel.movieList!!, navController)
     }
 }
