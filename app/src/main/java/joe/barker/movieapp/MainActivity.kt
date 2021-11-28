@@ -38,15 +38,10 @@ fun NavigationComponent(navController: NavHostController) {
             PopularMoviesPage(navController)
         }
         composable(
-            route = "movieDetails/{movieId}/{posterId}",
-            arguments = listOf(
-                navArgument("movieId") { type = NavType.LongType },
-                navArgument("posterId") { type = NavType.StringType })
+            route = "movieDetails/{movieId}",
+            arguments = listOf(navArgument("movieId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MovieDetailsPage(
-                backStackEntry.arguments?.getLong("movieId"),
-                backStackEntry.arguments?.getString("posterId")
-            )
+            MovieDetailsPage(backStackEntry.arguments?.getLong("movieId"))
         }
     }
 }

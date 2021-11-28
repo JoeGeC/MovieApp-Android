@@ -8,9 +8,7 @@ class PopularMovieModel(
     val releaseYear: String,
     val score: Float,
     val posterId: String
-) {
-
-}
+)
 
 internal fun List<MovieDetails>.convert(): List<PopularMovieModel> = this.map{
     PopularMovieModel(

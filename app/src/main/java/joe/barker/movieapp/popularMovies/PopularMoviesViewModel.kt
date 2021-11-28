@@ -16,13 +16,13 @@ class PopularMoviesViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
-    lateinit var model: List<PopularMovieModel>
+    lateinit var movieList: List<PopularMovieModel>
 
     fun fetchPopularMovies(dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         job( {
             _isLoading.value = true
             val result = useCase.getPopularMovies()
-            if (result.isSuccess) model = result.body!!.convert()
+            if (result.isSuccess) movieList = result.body!!.convert()
             else _error.value = true
             _isLoading.value = false
         }, dispatcher)

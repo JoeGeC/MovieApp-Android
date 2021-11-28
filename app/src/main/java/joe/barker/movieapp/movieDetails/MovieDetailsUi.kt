@@ -21,10 +21,10 @@ import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toW500Url
 
 @Composable
-fun MovieDetailsUi(model: MovieDetailsModel, posterId: String?) {
+fun MovieDetailsUi(model: MovieDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
         Row{
-            MoviePoster(posterId)
+            MoviePoster(model.posterId)
             MovieDetailsText(model)
         }
     }

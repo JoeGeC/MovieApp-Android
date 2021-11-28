@@ -24,18 +24,9 @@ import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toW500Url
 
 @Composable
-fun PopularMoviesPage(navController: NavHostController) {
-    val movies = listOf(
-        PopularMovieModel(
-            580489,
-            "Venom: Let There Be Carnage",
-            "15 Oct 2021",
-            7.2f,
-            "rjkmN1dniUHVYAtwuV3Tji7FsDO"
-        )
-    )
+fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
     LazyRow {
-        items(movies) { movie ->
+        items(movieList) { movie ->
             MovieListItem(movie, navController)
         }
     }
@@ -46,7 +37,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
     Column(modifier = Modifier
         .width(180.dp)
         .padding(8.dp)
-        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}/${movie.posterId}")} )) {
+        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}")} )) {
         Box {
             Image(
                 painter = rememberImagePainter(movie.posterId.toW500Url()),
