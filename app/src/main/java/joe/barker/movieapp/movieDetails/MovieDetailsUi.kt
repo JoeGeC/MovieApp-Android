@@ -1,7 +1,7 @@
 package joe.barker.movieapp.movieDetails
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,13 +12,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.skydoves.landscapist.glide.GlideImage
 import joe.barker.movieapp.extension.toImageUrl
 
 @Preview
@@ -32,22 +33,22 @@ fun MovieDetailsUi() {
 fun MovieDetailsUi(model: MovieDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
         Backdrop(model.backdropPath)
-        DetailsBackground(model)
+        DetailsContent(model)
     }
 }
 
 @Composable
-fun DetailsBackground(model: MovieDetailsModel) {
-    val topPadding = 200.dp
-    Box{
+fun DetailsContent(model: MovieDetailsModel) {
+    Box (modifier = Modifier
+        .verticalScroll(rememberScrollState())
+        .padding(top = 200.dp)){
         Box(modifier = Modifier
             .matchParentSize()
-            .padding(top = topPadding)
             .background(
                 color = MaterialTheme.colors.background,
                 shape = RoundedCornerShape(20.dp)
             ))
-        Row(modifier = Modifier.padding(top = topPadding)){
+        Row{
             MoviePoster(model.posterPath)
             MovieDetailsText(model)
         }
@@ -60,16 +61,17 @@ private fun Backdrop(backdropPath: String?) {
     Image(
         painter = rememberImagePainter(backdropPath.toImageUrl()),
         contentDescription = "Backdrop",
+        modifier = Modifier.width(400.dp)
     )
 }
 
 @Composable
-private fun MoviePoster(posterId: String?) {
-    if(posterId == null) return
-    Image(
-        painter = rememberImagePainter(posterId.toImageUrl()),
+private fun MoviePoster(posterPath: String?) {
+    if(posterPath == null) return
+    GlideImage(imageModel = posterPath.toImageUrl(),
+        contentScale = ContentScale.FillWidth,
         contentDescription = "Movie Poster",
-        Modifier
+        modifier = Modifier
             .padding(16.dp)
             .clip(RoundedCornerShape(10.dp))
             .width(150.dp)
@@ -82,6 +84,13 @@ private fun MovieDetailsText(details: MovieDetailsModel) {
         TitleText(details.title, details.releaseYear)
         TaglineText(details.tagline)
         OverviewLabelText()
+        OverviewText(details.overview)
+        OverviewText(details.overview)
+        OverviewText(details.overview)
+        OverviewText(details.overview)
+        OverviewText(details.overview)
+        OverviewText(details.overview)
+        OverviewText(details.overview)
         OverviewText(details.overview)
     }
 }

@@ -37,7 +37,7 @@ class PopularMoviesViewModelShould {
         Assertions.assertEquals(MovieDetailsTestProvider.id1, viewModel.movieList?.get(0)?.id)
         Assertions.assertEquals(MovieDetailsTestProvider.title1, viewModel.movieList?.get(0)?.title)
         Assertions.assertEquals(MovieDetailsTestProvider.releaseYear1, viewModel.movieList?.get(0)?.releaseYear)
-        Assertions.assertEquals(MovieDetailsTestProvider.posterPath1, viewModel.movieList?.get(0)?.posterId)
+        Assertions.assertEquals(MovieDetailsTestProvider.posterPath1, viewModel.movieList?.get(0)?.posterPath)
         Assertions.assertEquals(MovieDetailsTestProvider.score1, viewModel.movieList?.get(0)?.score)
     }
 
@@ -45,7 +45,7 @@ class PopularMoviesViewModelShould {
         Assertions.assertEquals(MovieDetailsTestProvider.id2, viewModel.movieList?.get(1)?.id)
         Assertions.assertEquals(MovieDetailsTestProvider.title2, viewModel.movieList?.get(1)?.title)
         Assertions.assertEquals(MovieDetailsTestProvider.releaseYear2, viewModel.movieList?.get(1)?.releaseYear)
-        Assertions.assertEquals(MovieDetailsTestProvider.posterId2, viewModel.movieList?.get(1)?.posterId)
+        Assertions.assertEquals(MovieDetailsTestProvider.posterId2, viewModel.movieList?.get(1)?.posterPath)
         Assertions.assertEquals(MovieDetailsTestProvider.score2, viewModel.movieList?.get(1)?.score)
     }
 

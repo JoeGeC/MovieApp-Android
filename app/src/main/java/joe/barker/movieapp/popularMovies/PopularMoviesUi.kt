@@ -48,12 +48,12 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
         .clickable(onClick = { navController.navigate("movieDetails/${movie.id}") })) {
         Box {
             Image(
-                painter = rememberImagePainter(data = movie.posterId.toImageUrl()),
+                painter = rememberImagePainter(movie.posterPath.toImageUrl()),
                 contentDescription = "Movie poster",
                 modifier = Modifier
                     .padding(bottom = 16.dp)
                     .width(180.dp)
-                    .clip(RoundedCornerShape(10.dp)),
+                    .clip(RoundedCornerShape(10.dp))
             )
             Box( //Rating circle
                 contentAlignment = Alignment.Center,
