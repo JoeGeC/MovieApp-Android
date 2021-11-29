@@ -14,18 +14,6 @@ class MovieDetailsRemoteImpl(
     )
 ) : BaseRemote(), MovieDetailsRemote {
 
-    override fun getMovieDetails(movieId: Long): Result<MovieDetailsResponse?, ErrorResponse?> {
-        return try{
-            val result = remote.retrieveMovie(movieId, API_KEY).execute()
-            return if (result.isSuccessful) {
-                Result.Success(result.body())
-            } else {
-                val errorResponse = JsonAdapter.convertToError(result)
-                Result.Failure(errorResponse)
-            }
-        } catch(exception: Exception){
-            val error = ErrorResponse(exception.localizedMessage)
-            Result.Failure(error)
-        }
-    }
+    override fun getMovieDetails(movieId: Long): Result<MovieDetailsResponse?, ErrorResponse?> =
+        tryRemote { remote.retrieveMovie(movieId, API_KEY) }
 }
