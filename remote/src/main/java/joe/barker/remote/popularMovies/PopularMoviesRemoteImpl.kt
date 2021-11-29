@@ -18,5 +18,4 @@ class PopularMoviesRemoteImpl(
 
     override fun getPopularMovies(): Result<PopularMoviesResponse?, ErrorResponse?> =
         tryRemote { remote.retrievePopularMovies(API_KEY) }
-
 }
