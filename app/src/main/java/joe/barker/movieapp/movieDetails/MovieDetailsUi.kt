@@ -44,7 +44,7 @@ fun DetailsBackground(model: MovieDetailsModel) {
             .matchParentSize()
             .padding(top = topPadding)
             .background(
-                Color.White,
+                color = MaterialTheme.colors.background,
                 shape = RoundedCornerShape(20.dp)
             ))
         Row(modifier = Modifier.padding(top = topPadding)){
@@ -90,7 +90,8 @@ private fun MovieDetailsText(details: MovieDetailsModel) {
 private fun TitleText(title: String, releaseYear: String) {
     Text(
         text = "$title ($releaseYear)",
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colors.primary
     )
 }
 
@@ -99,7 +100,8 @@ private fun TaglineText(tagline: String) {
     Text(
         text = tagline,
         fontSize = 12.sp,
-        fontStyle = FontStyle.Italic
+        fontStyle = FontStyle.Italic,
+        color = MaterialTheme.colors.primary
     )
 }
 
@@ -108,7 +110,8 @@ private fun OverviewLabelText() {
     Text(
         text = "Overview",
         fontWeight = FontWeight.Bold,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        color = MaterialTheme.colors.primary
     )
 }
 
@@ -116,7 +119,8 @@ private fun OverviewLabelText() {
 private fun OverviewText(overview: String) {
     Text(
         text = overview,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        color = MaterialTheme.colors.primary
     )
 }
 

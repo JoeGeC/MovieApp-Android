@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,13 +23,19 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toImageUrl
-import joe.barker.movieapp.R
 
 @Composable
 fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
-    LazyRow {
-        items(movieList) { movie ->
-            MovieListItem(movie, navController)
+    Column {
+        Text(text = "Popular Movies",
+            fontWeight = FontWeight.Bold,
+            fontSize = 32.sp,
+            modifier = Modifier.padding(8.dp),
+            color = MaterialTheme.colors.primary)
+        LazyRow {
+            items(movieList) { movie ->
+                MovieListItem(movie, navController)
+            }
         }
     }
 }
@@ -38,7 +45,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
     Column(modifier = Modifier
         .width(180.dp)
         .padding(8.dp)
-        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}")} )) {
+        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}") })) {
         Box {
             Image(
                 painter = rememberImagePainter(data = movie.posterId.toImageUrl()),
@@ -73,12 +80,13 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
         Text(
             text = movie.title,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 12.dp)
+            modifier = Modifier.padding(horizontal = 12.dp),
+            color = MaterialTheme.colors.primary
         )
         Text(
             text = movie.releaseYear,
             color = Color.Gray,
-            modifier = Modifier.padding(horizontal = 12.dp)
+            modifier = Modifier.padding(horizontal = 12.dp),
         )
     }
 }
