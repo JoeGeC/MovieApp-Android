@@ -1,24 +1,25 @@
 package joe.barker.movieapp.movieDetails
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
-import joe.barker.movieapp.extension.toOriginalUrl
+import joe.barker.movieapp.extension.toImageUrl
 
 @Preview
 @Composable
@@ -31,7 +32,22 @@ fun MovieDetailsUi() {
 fun MovieDetailsUi(model: MovieDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
         Backdrop(model.backdropPath)
-        Row(Modifier.clip(RoundedCornerShape(10.dp))){
+        DetailsBackground(model)
+    }
+}
+
+@Composable
+fun DetailsBackground(model: MovieDetailsModel) {
+    val topPadding = 200.dp
+    Box{
+        Box(modifier = Modifier
+            .matchParentSize()
+            .padding(top = topPadding)
+            .background(
+                Color.White,
+                shape = RoundedCornerShape(20.dp)
+            ))
+        Row(modifier = Modifier.padding(top = topPadding)){
             MoviePoster(model.posterPath)
             MovieDetailsText(model)
         }
@@ -42,7 +58,7 @@ fun MovieDetailsUi(model: MovieDetailsModel) {
 private fun Backdrop(backdropPath: String?) {
     if(backdropPath == null) return
     Image(
-        painter = rememberImagePainter(backdropPath.toOriginalUrl()),
+        painter = rememberImagePainter(backdropPath.toImageUrl()),
         contentDescription = "Backdrop",
     )
 }
@@ -51,7 +67,7 @@ private fun Backdrop(backdropPath: String?) {
 private fun MoviePoster(posterId: String?) {
     if(posterId == null) return
     Image(
-        painter = rememberImagePainter(posterId.toOriginalUrl()),
+        painter = rememberImagePainter(posterId.toImageUrl()),
         contentDescription = "Movie Poster",
         Modifier
             .padding(16.dp)
