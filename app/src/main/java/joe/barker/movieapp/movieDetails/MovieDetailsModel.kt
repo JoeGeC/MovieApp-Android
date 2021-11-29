@@ -8,9 +8,11 @@ class MovieDetailsModel(
     val releaseYear: String,
     val tagline: String,
     val overview: String,
-    val posterId: String,
-    val score: Float
-) {}
+    val posterPath: String,
+    val score: Float,
+    val backdropPath: String
+) {
+}
 
 internal fun MovieDetails.convert(): MovieDetailsModel =
     MovieDetailsModel(
@@ -19,6 +21,7 @@ internal fun MovieDetails.convert(): MovieDetailsModel =
         releaseDate.year.toString(),
         tagline,
         overview,
-        posterId,
-        score
+        posterPath,
+        score,
+        backdropPath
     )

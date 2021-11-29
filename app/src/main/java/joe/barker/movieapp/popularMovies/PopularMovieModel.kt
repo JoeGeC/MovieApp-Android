@@ -16,6 +16,6 @@ internal fun List<MovieDetails>.convert(): List<PopularMovieModel> = this.map{
         it.title,
         it.releaseDate.year.toString(),
         it.score,
-        it.posterId
+        it.posterPath
     )
 }

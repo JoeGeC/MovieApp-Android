@@ -37,7 +37,7 @@ class PopularMoviesViewModelShould {
         Assertions.assertEquals(MovieDetailsTestProvider.id1, viewModel.movieList?.get(0)?.id)
         Assertions.assertEquals(MovieDetailsTestProvider.title1, viewModel.movieList?.get(0)?.title)
         Assertions.assertEquals(MovieDetailsTestProvider.releaseYear1, viewModel.movieList?.get(0)?.releaseYear)
-        Assertions.assertEquals(MovieDetailsTestProvider.posterId1, viewModel.movieList?.get(0)?.posterId)
+        Assertions.assertEquals(MovieDetailsTestProvider.posterPath1, viewModel.movieList?.get(0)?.posterId)
         Assertions.assertEquals(MovieDetailsTestProvider.score1, viewModel.movieList?.get(0)?.score)
     }
 

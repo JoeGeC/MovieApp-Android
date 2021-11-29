@@ -10,6 +10,7 @@ fun MovieDetailsResponse.convert() = MovieDetails(
     this.release_date,
     this.poster_path,
     this.vote_average,
+    this.backdrop_path
 )
 
 fun MovieDetails.convert() = MovieDetailsResponse (
@@ -19,5 +20,6 @@ fun MovieDetails.convert() = MovieDetailsResponse (
     this.overview,
     this.release_date,
     this.poster_path,
-    this.vote_average
+    this.vote_average,
+    this.backdrop_path
 )

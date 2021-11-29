@@ -32,6 +32,9 @@ class MovieDetailsViewModelShould {
         assertEquals(MovieDetailsTestProvider.releaseYear1, viewModel.model.releaseYear)
         assertEquals(MovieDetailsTestProvider.tagline1, viewModel.model.tagline)
         assertEquals(MovieDetailsTestProvider.overview1, viewModel.model.overview)
+        assertEquals(MovieDetailsTestProvider.posterPath1, viewModel.model.posterPath)
+        assertEquals(MovieDetailsTestProvider.score1, viewModel.model.score)
+        assertEquals(MovieDetailsTestProvider.backdropPath1, viewModel.model.backdropPath)
     }
 
     @Test

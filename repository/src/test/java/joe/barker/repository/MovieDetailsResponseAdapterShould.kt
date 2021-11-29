@@ -10,25 +10,14 @@ import java.time.LocalDate
 class MovieDetailsResponseAdapterShould {
     @Test
     fun `Convert movie details response to movie details`(){
-        val id: Long = 0
-        val title = "title"
-        val tagline = "tagline"
-        val overview = "overview"
-        val releaseDate = LocalDate.of(2020, 1, 2)
-        val releaseDateString = "2020-01-02"
-        val posterId = "posterId"
-        val score = 1.1f
-        val movieDetailsResponse = MovieDetailsResponse(id, title, tagline, overview, releaseDateString, posterId, score)
-        val expected = MovieDetails(id, title, releaseDate, tagline, overview, posterId, score)
-
-        assertEquals(expected, movieDetailsResponse.convert())
+        assertEquals(MovieDetailsRepoTestProvider.movieDetails, MovieDetailsRepoTestProvider.movieDetailsResponse.convert())
     }
 
     @Test
     fun `Convert null movie details response to movie details`(){
         val releaseDate = LocalDate.of(0, 1, 1)
-        val movieDetailsResponse = MovieDetailsResponse(null, null, null, null, null, null, null)
-        val expected = MovieDetails(-1, "", releaseDate, "", "", "", 0f)
+        val movieDetailsResponse = MovieDetailsResponse(null, null, null, null, null, null, null, null)
+        val expected = MovieDetails(-1, "", releaseDate, "", "", "", 0f, "")
 
         assertEquals(expected, movieDetailsResponse.convert())
     }

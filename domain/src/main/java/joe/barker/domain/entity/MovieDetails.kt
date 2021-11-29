@@ -8,7 +8,8 @@ data class MovieDetails(
     val releaseDate: LocalDate,
     val tagline: String,
     val overview: String,
-    val posterId: String,
-    val score: Float
+    val posterPath: String,
+    val score: Float,
+    val backdropPath: String
 ) {
 }

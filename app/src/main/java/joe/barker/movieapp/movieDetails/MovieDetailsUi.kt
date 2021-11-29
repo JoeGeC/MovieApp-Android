@@ -18,23 +18,40 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
-import joe.barker.movieapp.extension.toW500Url
+import joe.barker.movieapp.extension.toOriginalUrl
+
+@Preview
+@Composable
+fun MovieDetailsUi() {
+    val model = MovieDetailsModel(1, "title", "1998", "tagline", "overview", "123.jpg", 1.1f, "123.jpg")
+    MovieDetailsUi(model)
+}
 
 @Composable
 fun MovieDetailsUi(model: MovieDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
-        Row{
-            MoviePoster(model.posterId)
+        Backdrop(model.backdropPath)
+        Row(Modifier.clip(RoundedCornerShape(10.dp))){
+            MoviePoster(model.posterPath)
             MovieDetailsText(model)
         }
     }
 }
 
 @Composable
+private fun Backdrop(backdropPath: String?) {
+    if(backdropPath == null) return
+    Image(
+        painter = rememberImagePainter(backdropPath.toOriginalUrl()),
+        contentDescription = "Backdrop",
+    )
+}
+
+@Composable
 private fun MoviePoster(posterId: String?) {
     if(posterId == null) return
     Image(
-        painter = rememberImagePainter(posterId.toW500Url()),
+        painter = rememberImagePainter(posterId.toOriginalUrl()),
         contentDescription = "Movie Poster",
         Modifier
             .padding(16.dp)
@@ -54,25 +71,9 @@ private fun MovieDetailsText(details: MovieDetailsModel) {
 }
 
 @Composable
-private fun OverviewText(overview: String) {
+private fun TitleText(title: String, releaseYear: String) {
     Text(
-        text = overview,
-        fontSize = 12.sp
-    )
-}
-
-@Preview
-@Composable
-private fun OverviewText() {
-    OverviewText("Overview")
-}
-
-@Preview
-@Composable
-private fun OverviewLabelText() {
-    Text(
-        text = "Overview",
-        fontSize = 13.sp,
+        text = "$title ($releaseYear)",
         fontWeight = FontWeight.Bold
     )
 }
@@ -86,22 +87,20 @@ private fun TaglineText(tagline: String) {
     )
 }
 
-@Preview
 @Composable
-private fun TaglineText() {
-    TaglineText("Tagline")
-}
-
-@Composable
-private fun TitleText(title: String, releaseYear: String) {
+private fun OverviewLabelText() {
     Text(
-        text = "$title ($releaseYear)",
-        fontWeight = FontWeight.Bold
+        text = "Overview",
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp
     )
 }
 
-@Preview
 @Composable
-private fun TitleText() {
-    TitleText("Title", "2020")
+private fun OverviewText(overview: String) {
+    Text(
+        text = overview,
+        fontSize = 12.sp
+    )
 }
+

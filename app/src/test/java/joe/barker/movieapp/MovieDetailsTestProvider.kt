@@ -11,9 +11,10 @@ class MovieDetailsTestProvider(){
         const val releaseYear1 = "2021"
         const val tagline1 = "tagline1"
         const val overview1 = "overview1"
-        const val posterId1 = "poster1"
+        const val posterPath1 = "poster1.jpg"
         const val score1 = 0.1f
-        val movie1 = MovieDetails(id1, title1, releaseDate1, tagline1, overview1, posterId1, score1)
+        const val backdropPath1 = "backdropPath1.jpg"
+        val movie1 = MovieDetails(id1, title1, releaseDate1, tagline1, overview1, posterPath1, score1, backdropPath1)
 
         const val id2: Long = 2
         const val title2 = "title2"
@@ -23,6 +24,7 @@ class MovieDetailsTestProvider(){
         const val overview2 = "overview2"
         const val posterId2 = "poster2"
         const val score2 = 0.2f
-        val movie2 = MovieDetails(id2, title2, releaseDate2, tagline2, overview2, posterId2, score2)
+        const val backdropPath2 = "backdropPath2.jpg"
+        val movie2 = MovieDetails(id2, title2, releaseDate2, tagline2, overview2, posterId2, score2, backdropPath2)
     }
 }

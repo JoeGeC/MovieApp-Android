@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
-import joe.barker.movieapp.extension.toW500Url
+import joe.barker.movieapp.extension.toOriginalUrl
 
 @Composable
 fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
@@ -40,7 +40,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
         .clickable(onClick = { navController.navigate("movieDetails/${movie.id}")} )) {
         Box {
             Image(
-                painter = rememberImagePainter(movie.posterId.toW500Url()),
+                painter = rememberImagePainter(movie.posterId.toOriginalUrl()),
                 contentDescription = "Movie poster",
                 modifier = Modifier
                     .padding(bottom = 16.dp)

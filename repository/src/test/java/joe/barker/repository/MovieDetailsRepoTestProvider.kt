@@ -12,9 +12,10 @@ class MovieDetailsRepoTestProvider {
         private const val movieOverview = "Overview"
         private val movieReleaseDate = LocalDate.of(2020, 1, 2)
         private const val movieReleaseDateString = "2020-01-02"
-        private const val posterId = "posterId"
+        private const val posterPath = "posterId.jpg"
         private const val score = 1.1f
-        internal val movieDetailsResponse = MovieDetailsResponse(movieId, movieTitle, movieTagline, movieOverview, movieReleaseDateString, posterId, score)
-        internal val movieDetails = MovieDetails(movieId, movieTitle, movieReleaseDate, movieTagline, movieOverview, posterId, score)
+        private const val backdropPath = "backdropPath.jpg"
+        internal val movieDetailsResponse = MovieDetailsResponse(movieId, movieTitle, movieTagline, movieOverview, movieReleaseDateString, posterPath, score, backdropPath)
+        internal val movieDetails = MovieDetails(movieId, movieTitle, movieReleaseDate, movieTagline, movieOverview, posterPath, score, backdropPath)
     }
 }
