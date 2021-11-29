@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toImageUrl
+import joe.barker.movieapp.R
 
 @Composable
 fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
@@ -40,7 +41,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
         .clickable(onClick = { navController.navigate("movieDetails/${movie.id}")} )) {
         Box {
             Image(
-                painter = rememberImagePainter(movie.posterId.toImageUrl()),
+                painter = rememberImagePainter(data = movie.posterId.toImageUrl()),
                 contentDescription = "Movie poster",
                 modifier = Modifier
                     .padding(bottom = 16.dp)
@@ -50,10 +51,10 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
             Box( //Rating circle
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
-                    .padding(end = 8.dp)
+                    .padding(end = 8.dp, top = 220.dp)
                     .size(48.dp)
                     .background(Color.Black, shape = CircleShape)
-                    .align(Alignment.BottomEnd)
+                    .align(Alignment.TopEnd)
             ) {
                 CircularProgressIndicator(
                     progress = movie.score / 10,
