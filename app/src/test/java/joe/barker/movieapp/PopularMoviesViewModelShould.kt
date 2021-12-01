@@ -1,5 +1,6 @@
 package joe.barker.movieapp
 
+import android.graphics.Movie
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
@@ -13,9 +14,10 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
+import kotlin.math.exp
 
 class PopularMoviesViewModelShould {
-    private val movieList = listOf(MovieDetailsTestProvider.movie1, MovieDetailsTestProvider.movie2)
+    private val movieList = listOf(MovieTestProvider.movie1, MovieTestProvider.movie2)
 
     @Test
     fun `Get popular movies from use case`(){
@@ -27,26 +29,18 @@ class PopularMoviesViewModelShould {
 
         runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
 
-        assertFirstMovie(viewModel)
-        assertSecondMovie(viewModel)
+        assertMovie(MovieTestProvider.movieModel1, viewModel.movieList?.get(0))
+        assertMovie(MovieTestProvider.movieModel2, viewModel.movieList?.get(1))
         Assertions.assertFalse(viewModel.error.value)
         Assertions.assertFalse(viewModel.isLoading.value)
     }
 
-    private fun assertFirstMovie(viewModel: PopularMoviesViewModel) {
-        Assertions.assertEquals(MovieDetailsTestProvider.id1, viewModel.movieList?.get(0)?.id)
-        Assertions.assertEquals(MovieDetailsTestProvider.title1, viewModel.movieList?.get(0)?.title)
-        Assertions.assertEquals(MovieDetailsTestProvider.releaseYear1, viewModel.movieList?.get(0)?.releaseYear)
-        Assertions.assertEquals(MovieDetailsTestProvider.posterPath1, viewModel.movieList?.get(0)?.posterPath)
-        Assertions.assertEquals(MovieDetailsTestProvider.score1, viewModel.movieList?.get(0)?.score)
-    }
-
-    private fun assertSecondMovie(viewModel: PopularMoviesViewModel) {
-        Assertions.assertEquals(MovieDetailsTestProvider.id2, viewModel.movieList?.get(1)?.id)
-        Assertions.assertEquals(MovieDetailsTestProvider.title2, viewModel.movieList?.get(1)?.title)
-        Assertions.assertEquals(MovieDetailsTestProvider.releaseYear2, viewModel.movieList?.get(1)?.releaseYear)
-        Assertions.assertEquals(MovieDetailsTestProvider.posterId2, viewModel.movieList?.get(1)?.posterPath)
-        Assertions.assertEquals(MovieDetailsTestProvider.score2, viewModel.movieList?.get(1)?.score)
+    private fun assertMovie(expected: PopularMovieModel, result: PopularMovieModel?) {
+        Assertions.assertEquals(expected.id, result?.id)
+        Assertions.assertEquals(expected.title, result?.title)
+        Assertions.assertEquals(expected.releaseYear, result?.releaseYear)
+        Assertions.assertEquals(expected.posterPath, result?.posterPath)
+        Assertions.assertEquals(expected.score, result?.score)
     }
 
     @Test
