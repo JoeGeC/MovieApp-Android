@@ -12,7 +12,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.skydoves.landscapist.glide.GlideImage
+import joe.barker.movieapp.R
 import joe.barker.movieapp.extension.toImageUrl
 
 @Preview
@@ -59,7 +62,10 @@ fun DetailsContent(model: MovieDetailsModel) {
 private fun Backdrop(backdropPath: String?) {
     if(backdropPath == null) return
     Image(
-        painter = rememberImagePainter(backdropPath.toImageUrl()),
+        painter = rememberImagePainter(
+            data = backdropPath.toImageUrl(),
+            builder = { placeholder(R.drawable.backdrop_placeholder)}
+        ),
         contentDescription = "Backdrop",
         modifier = Modifier.width(400.dp)
     )
@@ -69,6 +75,7 @@ private fun Backdrop(backdropPath: String?) {
 private fun MoviePoster(posterPath: String?) {
     if(posterPath == null) return
     GlideImage(imageModel = posterPath.toImageUrl(),
+        placeHolder = ImageBitmap.imageResource(R.drawable.poster_placeholder),
         contentScale = ContentScale.FillWidth,
         contentDescription = "Movie Poster",
         modifier = Modifier
