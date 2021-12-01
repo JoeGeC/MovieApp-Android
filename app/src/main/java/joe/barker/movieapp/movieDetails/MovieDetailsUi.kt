@@ -28,6 +28,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import joe.barker.movieapp.R
 import joe.barker.movieapp.extension.toImageUrl
 import joe.barker.movieapp.ui.RatingCircle
+import joe.barker.movieapp.ui.TextWithHeader
 
 @Preview
 @Composable
@@ -55,14 +56,13 @@ fun DetailsContent(movie: MovieDetailsModel) {
             .background(
                 color = MaterialTheme.colors.background,
                 shape = RoundedCornerShape(20.dp)))
-        Column(Modifier.padding(24.dp)){
-            Row(Modifier.padding(bottom = 16.dp)){
+        Column(Modifier.padding(24.dp)) {
+            Row(Modifier.padding(bottom = 16.dp)) {
                 MoviePoster(movie.posterPath)
                 MovieDetailsSide(movie)
             }
             TaglineText(movie.tagline)
-            OverviewLabelText()
-            OverviewText(movie.overview)
+            TextWithHeader("Overview", movie.overview)
         }
     }
 }
@@ -102,8 +102,29 @@ private fun MovieDetailsSide(movie: MovieDetailsModel) {
         .background(Color.Black, shape = CircleShape)
     Column {
         TitleText(movie.title, movie.releaseYear)
+        ReleaseDateText(movie.releaseDate)
         UserScore(movie, ratingCircleModifier)
     }
+}
+
+@Composable
+private fun TitleText(title: String, releaseYear: String) {
+    Text(
+        text = "$title ($releaseYear)",
+        fontWeight = FontWeight.Bold,
+        color = MaterialTheme.colors.primary,
+        fontSize = 18.sp,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+}
+
+@Composable
+fun ReleaseDateText(releaseDate: String) {
+    Text(
+        text = releaseDate,
+        fontSize = 14.sp,
+        color = MaterialTheme.colors.primary,
+    )
 }
 
 @Composable
@@ -121,16 +142,6 @@ private fun UserScore(movie: MovieDetailsModel, ratingCircleModifier: Modifier) 
 }
 
 @Composable
-private fun TitleText(title: String, releaseYear: String) {
-    Text(
-        text = "$title ($releaseYear)",
-        fontWeight = FontWeight.Bold,
-        color = MaterialTheme.colors.primary,
-        fontSize = 18.sp
-    )
-}
-
-@Composable
 private fun TaglineText(tagline: String) {
     if(tagline.isEmpty()) return
     Text(
@@ -139,25 +150,6 @@ private fun TaglineText(tagline: String) {
         fontStyle = FontStyle.Italic,
         color = MaterialTheme.colors.primary,
         modifier = Modifier.padding(bottom = 8.dp)
-    )
-}
-
-@Composable
-private fun OverviewLabelText() {
-    Text(
-        text = "Overview",
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp,
-        color = MaterialTheme.colors.primary
-    )
-}
-
-@Composable
-private fun OverviewText(overview: String) {
-    Text(
-        text = overview,
-        fontSize = 14.sp,
-        color = MaterialTheme.colors.primary,
     )
 }
 

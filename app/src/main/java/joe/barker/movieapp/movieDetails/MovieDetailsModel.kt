@@ -1,7 +1,6 @@
 package joe.barker.movieapp.movieDetails
 
 import joe.barker.domain.entity.MovieDetails
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class MovieDetailsModel(
