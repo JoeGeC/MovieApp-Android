@@ -7,7 +7,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -18,11 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,8 +27,6 @@ import coil.compose.rememberImagePainter
 import com.skydoves.landscapist.glide.GlideImage
 import joe.barker.movieapp.R
 import joe.barker.movieapp.extension.toImageUrl
-import joe.barker.movieapp.popularMovies.asPercentage
-import joe.barker.movieapp.popularMovies.percentageCircleColor
 import joe.barker.movieapp.ui.RatingCircle
 
 @Preview
@@ -50,19 +45,24 @@ fun MovieDetailsUi(model: MovieDetailsModel) {
 }
 
 @Composable
-fun DetailsContent(model: MovieDetailsModel) {
+fun DetailsContent(movie: MovieDetailsModel) {
     Box (modifier = Modifier
         .verticalScroll(rememberScrollState())
-        .padding(top = 200.dp)){
+        .padding(top = 200.dp)
+    ) {
         Box(modifier = Modifier
             .matchParentSize()
             .background(
                 color = MaterialTheme.colors.background,
-                shape = RoundedCornerShape(20.dp)
-            ))
-        Row{
-            MoviePoster(model.posterPath)
-            MovieDetailsText(model)
+                shape = RoundedCornerShape(20.dp)))
+        Column(Modifier.padding(24.dp)){
+            Row(Modifier.padding(bottom = 16.dp)){
+                MoviePoster(movie.posterPath)
+                MovieDetailsSide(movie)
+            }
+            TaglineText(movie.tagline)
+            OverviewLabelText()
+            OverviewText(movie.overview)
         }
     }
 }
@@ -88,31 +88,28 @@ private fun MoviePoster(posterPath: String?) {
         contentScale = ContentScale.FillWidth,
         contentDescription = "Movie Poster",
         modifier = Modifier
-            .padding(16.dp)
+            .padding(end = 16.dp)
             .clip(RoundedCornerShape(10.dp))
             .width(150.dp)
     )
 }
 
 @Composable
-private fun MovieDetailsText(details: MovieDetailsModel) {
+private fun MovieDetailsSide(movie: MovieDetailsModel) {
     val ratingCircleModifier = Modifier
         .padding(end = 8.dp, top = 8.dp, bottom = 8.dp)
         .size(48.dp)
         .background(Color.Black, shape = CircleShape)
-    Column(modifier = Modifier.padding(top = 16.dp, bottom = 16.dp, end = 16.dp)) {
-        TitleText(details.title, details.releaseYear)
-        UserScore(details, ratingCircleModifier)
-        TaglineText(details.tagline)
-        OverviewLabelText()
-        OverviewText(details.overview)
+    Column {
+        TitleText(movie.title, movie.releaseYear)
+        UserScore(movie, ratingCircleModifier)
     }
 }
 
 @Composable
-private fun UserScore(details: MovieDetailsModel, ratingCircleModifier: Modifier) {
+private fun UserScore(movie: MovieDetailsModel, ratingCircleModifier: Modifier) {
     Row{
-        RatingCircle(details.score, ratingCircleModifier)
+        RatingCircle(movie.score, ratingCircleModifier)
         Text(
             text = "User\nScore",
             fontWeight = FontWeight.Bold,
@@ -140,7 +137,8 @@ private fun TaglineText(tagline: String) {
         text = tagline,
         fontSize = 14.sp,
         fontStyle = FontStyle.Italic,
-        color = MaterialTheme.colors.primary
+        color = MaterialTheme.colors.primary,
+        modifier = Modifier.padding(bottom = 8.dp)
     )
 }
 
@@ -159,7 +157,7 @@ private fun OverviewText(overview: String) {
     Text(
         text = overview,
         fontSize = 14.sp,
-        color = MaterialTheme.colors.primary
+        color = MaterialTheme.colors.primary,
     )
 }
 
