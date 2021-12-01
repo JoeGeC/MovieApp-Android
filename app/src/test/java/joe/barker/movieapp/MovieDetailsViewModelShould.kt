@@ -3,6 +3,7 @@ package joe.barker.movieapp
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
+import joe.barker.movieapp.movieDetails.MovieDetailsModel
 import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -22,19 +23,20 @@ class MovieDetailsViewModelShould {
 
         runBlocking { viewModel.fetchMovieDetailsOf(MovieTestProvider.id1, Dispatchers.Unconfined) }
 
-        assertMovieDetails(viewModel)
+        assertMovieDetails(viewModel.model)
         assertFalse(viewModel.error.value)
     }
 
-    private fun assertMovieDetails(viewModel: MovieDetailsViewModel) {
-        assertEquals(MovieTestProvider.id1, viewModel.model.id)
-        assertEquals(MovieTestProvider.title1, viewModel.model.title)
-        assertEquals(MovieTestProvider.releaseYear1, viewModel.model.releaseYear)
-        assertEquals(MovieTestProvider.tagline1, viewModel.model.tagline)
-        assertEquals(MovieTestProvider.overview1, viewModel.model.overview)
-        assertEquals(MovieTestProvider.posterPath1, viewModel.model.posterPath)
-        assertEquals(MovieTestProvider.score1, viewModel.model.score)
-        assertEquals(MovieTestProvider.backdropPath1, viewModel.model.backdropPath)
+    private fun assertMovieDetails(result: MovieDetailsModel) {
+        assertEquals(MovieTestProvider.id1, result.id)
+        assertEquals(MovieTestProvider.title1, result.title)
+        assertEquals(MovieTestProvider.releaseYear1, result.releaseYear)
+        assertEquals(MovieTestProvider.releaseDateAsString1, result.releaseDate)
+        assertEquals(MovieTestProvider.tagline1, result.tagline)
+        assertEquals(MovieTestProvider.overview1, result.overview)
+        assertEquals(MovieTestProvider.posterPath1, result.posterPath)
+        assertEquals(MovieTestProvider.score1, result.score)
+        assertEquals(MovieTestProvider.backdropPath1, result.backdropPath)
     }
 
     @Test

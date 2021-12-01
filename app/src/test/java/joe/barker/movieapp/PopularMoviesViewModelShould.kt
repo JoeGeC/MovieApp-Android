@@ -1,9 +1,8 @@
 package joe.barker.movieapp
 
-import android.graphics.Movie
+import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
 import joe.barker.movieapp.popularMovies.PopularMovieModel
 import joe.barker.movieapp.popularMovies.PopularMoviesViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,6 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
-import kotlin.math.exp
 
 class PopularMoviesViewModelShould {
     private val movieList = listOf(MovieTestProvider.movie1, MovieTestProvider.movie2)

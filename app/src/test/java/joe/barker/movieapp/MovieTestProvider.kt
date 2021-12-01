@@ -9,6 +9,7 @@ class MovieTestProvider(){
         const val id1: Long = 1
         const val title1 = "title1"
         private val releaseDate1 = LocalDate.of(2021, 1, 2)
+        const val releaseDateAsString1 = "02/01/2021"
         const val releaseYear1 = "2021"
         const val tagline1 = "tagline1"
         const val overview1 = "overview1"

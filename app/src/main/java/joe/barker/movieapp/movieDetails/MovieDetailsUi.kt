@@ -32,7 +32,7 @@ import joe.barker.movieapp.ui.RatingCircle
 @Preview
 @Composable
 fun MovieDetailsUi() {
-    val model = MovieDetailsModel(1, "title", "1998", "tagline", "overview", "123.jpg", 1.1f, "123.jpg")
+    val model = MovieDetailsModel(1, "title", "1998", "29/05/1998", "tagline", "overview", "123.jpg", 1.1f, "123.jpg")
     MovieDetailsUi(model)
 }
 
