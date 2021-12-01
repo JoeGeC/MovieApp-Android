@@ -24,6 +24,7 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toImageUrl
 import joe.barker.movieapp.R
+import joe.barker.movieapp.ui.RatingCircle
 
 @Composable
 fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
@@ -47,40 +48,7 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
         .width(180.dp)
         .padding(8.dp)
         .clickable(onClick = { navController.navigate("movieDetails/${movie.id}") })) {
-        Box {
-            Image(
-                painter = rememberImagePainter(
-                    data = movie.posterPath.toImageUrl(),
-                    builder = { placeholder(R.drawable.poster_placeholder)}
-                ),
-                contentDescription = "Movie poster",
-                modifier = Modifier
-                    .padding(bottom = 16.dp)
-                    .width(180.dp)
-                    .clip(RoundedCornerShape(10.dp)),
-            )
-            Box( //Rating circle
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .padding(end = 8.dp, top = 220.dp)
-                    .size(48.dp)
-                    .background(Color.Black, shape = CircleShape)
-                    .align(Alignment.TopEnd)
-            ) {
-                CircularProgressIndicator(
-                    progress = movie.score / 10,
-                    color = percentageCircleColor(movie.score),
-                    strokeWidth = 2.dp
-                )
-                Text(
-                    text = "${movie.score.asPercentage()}%",
-                    color = Color.White,
-                    textAlign = TextAlign.Center,
-                    fontSize = 13.sp,
-                    modifier = Modifier.padding(4.dp)
-                )
-            }
-        }
+        MoviePosterWithRating(movie)
         Text(
             text = movie.title,
             fontWeight = FontWeight.Bold,
@@ -92,6 +60,29 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
             color = Color.Gray,
             modifier = Modifier.padding(horizontal = 12.dp),
         )
+    }
+}
+
+@Composable
+private fun MoviePosterWithRating(movie: PopularMovieModel) {
+    Box {
+        Image(
+            painter = rememberImagePainter(
+                data = movie.posterPath.toImageUrl(),
+                builder = { placeholder(R.drawable.poster_placeholder) }
+            ),
+            contentDescription = "Movie poster",
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .width(180.dp)
+                .clip(RoundedCornerShape(10.dp)),
+        )
+        val ratingCircleModifier = Modifier
+            .padding(end = 8.dp, top = 220.dp)
+            .size(48.dp)
+            .background(Color.Black, shape = CircleShape)
+            .align(Alignment.TopEnd)
+        RatingCircle(movie.score, ratingCircleModifier)
     }
 }
 
