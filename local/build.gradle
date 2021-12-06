@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation 'androidx.test:core-ktx:1.4.0'
     implementation("androidx.room:room-runtime:$room_version")
+    kapt("org.xerial:sqlite-jdbc:3.34.0")
     annotationProcessor("androidx.room:room-compiler:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junit_version")

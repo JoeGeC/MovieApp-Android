@@ -46,10 +46,23 @@ fun MovieDetailsUi(model: MovieDetailsModel) {
 }
 
 @Composable
+private fun Backdrop(backdropPath: String?) {
+    if(backdropPath == null) return
+    Image(
+        painter = rememberImagePainter(
+            data = backdropPath.toImageUrl(),
+            builder = { placeholder(R.drawable.backdrop_placeholder)}
+        ),
+        contentDescription = "Backdrop",
+        modifier = Modifier.width(400.dp)
+    )
+}
+
+@Composable
 fun DetailsContent(movie: MovieDetailsModel) {
     Box (modifier = Modifier
         .verticalScroll(rememberScrollState())
-        .padding(top = 200.dp)
+        .padding(top = 180.dp)
     ) {
         Box(modifier = Modifier
             .matchParentSize()
@@ -65,19 +78,6 @@ fun DetailsContent(movie: MovieDetailsModel) {
             TextWithHeader("Overview", movie.overview)
         }
     }
-}
-
-@Composable
-private fun Backdrop(backdropPath: String?) {
-    if(backdropPath == null) return
-    Image(
-        painter = rememberImagePainter(
-            data = backdropPath.toImageUrl(),
-            builder = { placeholder(R.drawable.backdrop_placeholder)}
-        ),
-        contentDescription = "Backdrop",
-        modifier = Modifier.width(400.dp)
-    )
 }
 
 @Composable
