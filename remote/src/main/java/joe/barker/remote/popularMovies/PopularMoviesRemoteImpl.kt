@@ -3,7 +3,7 @@ package joe.barker.remote.popularMovies
 import joe.barker.remote.BaseRemote
 import joe.barker.repository.boundary.PopularMoviesRemote
 import joe.barker.repository.response.ErrorResponse
-import joe.barker.repository.response.PopularMediaResponse
+import joe.barker.repository.response.PopularMovieResponse
 import joe.barker.repository.response.Result
 
 class PopularMoviesRemoteImpl(
@@ -12,6 +12,6 @@ class PopularMoviesRemoteImpl(
     )
 ) : BaseRemote(), PopularMoviesRemote{
 
-    override fun getPopularMovies(): Result<PopularMediaResponse?, ErrorResponse?> =
+    override fun getPopularMovies(): Result<PopularMovieResponse?, ErrorResponse?> =
         tryRemote { remote.retrievePopularMovies(API_KEY) }
 }

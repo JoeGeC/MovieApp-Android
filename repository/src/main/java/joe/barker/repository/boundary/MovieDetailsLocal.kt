@@ -1,8 +1,8 @@
 package joe.barker.repository.boundary
 
-import joe.barker.repository.response.MediaDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 
 interface MovieDetailsLocal {
-    fun insert(movieDetailsResponse: MediaDetailsResponse)
-    fun getMovie(movieId: Long) : MediaDetailsResponse?
+    fun insert(movieDetailsResponse: MovieDetailsResponse)
+    fun getMovie(movieId: Long) : MovieDetailsResponse?
 }

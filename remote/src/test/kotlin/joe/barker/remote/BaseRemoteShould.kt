@@ -5,8 +5,8 @@ import joe.barker.remote.movieDetails.MovieDetailsRemoteImpl
 import joe.barker.remote.popularMovies.PopularMoviesRemoteCalls
 import joe.barker.remote.popularMovies.PopularMoviesRemoteImpl
 import joe.barker.repository.response.ErrorResponse
-import joe.barker.repository.response.MediaDetailsResponse
-import joe.barker.repository.response.PopularMediaResponse
+import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.PopularMovieResponse
 import joe.barker.repository.response.Result
 import okhttp3.MediaType
 import okhttp3.ResponseBody
@@ -22,7 +22,7 @@ import java.lang.Exception
 
 class BaseRemoteShould {
     private val apiKey = BaseRemote.API_KEY
-    private val movieId: Long = MovieDetailsRemoteTestProvider.movieId1
+    private val movieId: Long = MediaDetailsRemoteTestProvider.movieId1
     private val errorCode = 404
     private val errorMessage = "The resource you requested could not be found."
     private val errorsJson = "{\n" +
@@ -34,7 +34,7 @@ class BaseRemoteShould {
 
     @Test
     fun `Return error response on failure call Movie Details`(){
-        val response = Response.error<MediaDetailsResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
+        val response = Response.error<MovieDetailsResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
             on { retrieveMovie(movieId, apiKey) }.doReturn(Calls.response(response))
         }
@@ -46,7 +46,7 @@ class BaseRemoteShould {
 
     @Test
     fun `Return error response on failure call Popular Movies`(){
-        val response = Response.error<PopularMediaResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
+        val response = Response.error<PopularMovieResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
         val remoteCalls = mock<PopularMoviesRemoteCalls> {
             on { retrievePopularMovies(apiKey) }.doReturn(Calls.response(response))
         }

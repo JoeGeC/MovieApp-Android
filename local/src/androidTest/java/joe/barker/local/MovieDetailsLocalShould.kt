@@ -3,7 +3,7 @@ package joe.barker.local
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import joe.barker.repository.response.MediaDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.local.moviedetails.MovieDetails
 import joe.barker.local.moviedetails.MovieDetailsLocalImpl
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -24,7 +24,7 @@ class MovieDetailsLocalShould {
     private val score = 1.1f
     private val backdropPath = "backdrop.png"
     private val movieDetails = MovieDetails(id, title, tagline, overview, releaseDate, posterId, score, backdropPath)
-    private val movieDetailsResponse = MediaDetailsResponse(id, title, tagline, overview, releaseDate, posterId, score, backdropPath)
+    private val movieDetailsResponse = MovieDetailsResponse(id, title, tagline, overview, releaseDate, posterId, score, backdropPath)
     private val local = MovieDetailsLocalImpl(database)
 
     @Test

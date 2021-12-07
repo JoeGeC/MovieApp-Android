@@ -1,12 +1,12 @@
-package joe.barker.repository
+package joe.barker.repository.repository
 
 import joe.barker.repository.boundary.MovieDetailsLocal
 import joe.barker.repository.boundary.MovieDetailsRemote
-import joe.barker.repository.repository.MovieDetailsRepositoryImpl
 import joe.barker.repository.response.ErrorResponse
 import joe.barker.repository.response.Result
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
+import joe.barker.repository.MediaDetailsRepoTestProvider
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -19,7 +19,7 @@ class MovieDetailsRepositoryShould {
     fun `Get movie details from local storage if existing`(){
         val local = mock<MovieDetailsLocal> {
             on { getMovie(MediaDetailsRepoTestProvider.id) } doReturn
-                    MediaDetailsRepoTestProvider.mediaDetailsResponse
+                    MediaDetailsRepoTestProvider.movieDetailsResponse
         }
         val remote = mock<MovieDetailsRemote>()
         val repository = MovieDetailsRepositoryImpl(local, remote)
@@ -37,7 +37,7 @@ class MovieDetailsRepositoryShould {
         }
         val remote = mock<MovieDetailsRemote> {
             on { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn
-                    Result.Success(MediaDetailsRepoTestProvider.mediaDetailsResponse)
+                    Result.Success(MediaDetailsRepoTestProvider.movieDetailsResponse)
         }
         val repository = MovieDetailsRepositoryImpl(local, remote)
 
@@ -45,7 +45,7 @@ class MovieDetailsRepositoryShould {
 
         val expected = Either.Success(MediaDetailsRepoTestProvider.mediaDetails)
         assertEquals(expected, result)
-        verify(local).insert(MediaDetailsRepoTestProvider.mediaDetailsResponse)
+        verify(local).insert(MediaDetailsRepoTestProvider.movieDetailsResponse)
     }
 
     @Test

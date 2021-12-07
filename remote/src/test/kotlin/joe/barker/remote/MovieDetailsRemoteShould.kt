@@ -11,11 +11,11 @@ import retrofit2.mock.Calls
 
 class MovieDetailsRemoteShould {
     private val apiKey = BaseRemote.API_KEY
-    private val movieId: Long = MovieDetailsRemoteTestProvider.movieId1
+    private val movieId: Long = MediaDetailsRemoteTestProvider.movieId1
 
     @Test
     fun `Return movie details response on successful call`(){
-        val response = MovieDetailsRemoteTestProvider.response1
+        val response = MediaDetailsRemoteTestProvider.movieResponse1
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
             on { retrieveMovie(movieId, apiKey) }.doReturn(Calls.response(response))
         }

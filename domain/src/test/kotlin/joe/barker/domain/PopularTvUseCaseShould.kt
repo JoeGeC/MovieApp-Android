@@ -1,9 +1,8 @@
 package joe.barker.domain
 
 import joe.barker.domain.boundary.repository.PopularTvRepository
-import joe.barker.domain.boundary.useCase.PopularTvUseCase
 import joe.barker.domain.entity.Either
-import joe.barker.domain.useCase.PopularMoviesUseCaseImpl
+import joe.barker.domain.useCase.PopularTvUseCaseImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

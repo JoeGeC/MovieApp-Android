@@ -6,8 +6,10 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
 
-class PopularMoviesUseCaseImpl(private val repository: PopularMoviesRepository):
-    PopularMoviesUseCase {
+class PopularMoviesUseCaseImpl(
+    private val repository: PopularMoviesRepository
+) : PopularMoviesUseCase {
+
     override fun getPopularMovies(): Either<List<MediaDetails>?, ErrorEntity?> =
         repository.getPopularMovies()
 }

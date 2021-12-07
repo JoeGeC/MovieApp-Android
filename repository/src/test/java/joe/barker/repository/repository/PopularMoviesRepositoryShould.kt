@@ -1,11 +1,11 @@
-package joe.barker.repository
+package joe.barker.repository.repository
 
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
+import joe.barker.repository.MediaDetailsRepoTestProvider
 import joe.barker.repository.boundary.PopularMoviesRemote
-import joe.barker.repository.repository.PopularMoviesRepositoryImpl
 import joe.barker.repository.response.ErrorResponse
-import joe.barker.repository.response.PopularMediaResponse
+import joe.barker.repository.response.PopularMovieResponse
 import joe.barker.repository.response.Result
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
@@ -14,7 +14,7 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
 class PopularMoviesRepositoryShould {
-    private val response = PopularMediaResponse(listOf(MediaDetailsRepoTestProvider.mediaDetailsResponse))
+    private val response = PopularMovieResponse(listOf(MediaDetailsRepoTestProvider.movieDetailsResponse))
     private val movieList = listOf(MediaDetailsRepoTestProvider.mediaDetails)
 
     @Test

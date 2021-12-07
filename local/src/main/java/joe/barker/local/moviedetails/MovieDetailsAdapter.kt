@@ -1,8 +1,8 @@
 package joe.barker.local.moviedetails
 
-import joe.barker.repository.response.MediaDetailsResponse
+import joe.barker.repository.response.MovieDetailsResponse
 
-fun MediaDetailsResponse.convert() = MovieDetails(
+fun MovieDetailsResponse.convert() = MovieDetails(
     this.id!!,
     this.title,
     this.tagline,
@@ -13,7 +13,7 @@ fun MediaDetailsResponse.convert() = MovieDetails(
     this.backdrop_path
 )
 
-fun MovieDetails.convert() = MediaDetailsResponse (
+fun MovieDetails.convert() = MovieDetailsResponse (
     this.id,
     this.title,
     this.tagline,

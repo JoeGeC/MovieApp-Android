@@ -1,4 +1,4 @@
-package joe.barker.domain
+package joe.barker.domain.useCase
 
 import joe.barker.domain.boundary.repository.PopularTvRepository
 import joe.barker.domain.boundary.useCase.PopularTvUseCase

@@ -10,8 +10,8 @@ import joe.barker.movieapp.ui.LoadingUi
 
 @Composable
 fun PopularPage(navController: NavHostController) {
-    val viewModel = viewModel<PopularMoviesViewModel>()
-    viewModel.fetchPopularMovies()
+    val viewModel = viewModel<PopularTvViewModel>()
+    viewModel.fetchPopularTvShows()
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {

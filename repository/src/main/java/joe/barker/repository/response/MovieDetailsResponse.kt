@@ -1,7 +1,6 @@
 package joe.barker.repository.response
 
-
-data class MediaDetailsResponse(
+data class MovieDetailsResponse(
     val id: Long?,
     val title: String?,
     val tagline: String?,
