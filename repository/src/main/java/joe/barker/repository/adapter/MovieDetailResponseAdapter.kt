@@ -1,11 +1,11 @@
 package joe.barker.repository.adapter
 
-import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.MediaDetailsResponse
 import joe.barker.domain.entity.MediaDetails
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-fun MovieDetailsResponse.convert() = MediaDetails(
+fun MediaDetailsResponse.convert() = MediaDetails(
     id ?: -1,
     title.orEmpty(),
     convertDate(),
@@ -16,7 +16,7 @@ fun MovieDetailsResponse.convert() = MediaDetails(
     backdrop_path.orEmpty()
 )
 
-private fun MovieDetailsResponse.convertDate(): LocalDate {
+private fun MediaDetailsResponse.convertDate(): LocalDate {
     return if(release_date != null)
         LocalDate.parse(this.release_date, DateTimeFormatter.ISO_DATE)
     else

@@ -18,49 +18,49 @@ class MovieDetailsRepositoryShould {
     @Test
     fun `Get movie details from local storage if existing`(){
         val local = mock<MovieDetailsLocal> {
-            on { getMovie(MovieDetailsRepoTestProvider.movieId) } doReturn
-                    MovieDetailsRepoTestProvider.movieDetailsResponse
+            on { getMovie(MediaDetailsRepoTestProvider.id) } doReturn
+                    MediaDetailsRepoTestProvider.mediaDetailsResponse
         }
         val remote = mock<MovieDetailsRemote>()
         val repository = MovieDetailsRepositoryImpl(local, remote)
 
-        val result = runBlocking { repository.getMovieDetailsOf(MovieDetailsRepoTestProvider.movieId) }
+        val result = runBlocking { repository.getMovieDetailsOf(MediaDetailsRepoTestProvider.id) }
 
-        val expected = Either.Success(MovieDetailsRepoTestProvider.movieDetails)
+        val expected = Either.Success(MediaDetailsRepoTestProvider.mediaDetails)
         assertEquals(result, expected)
     }
 
     @Test
     fun `Get movie details from remote and insert to local if not already in local`(){
         val local = mock<MovieDetailsLocal> {
-            on { getMovie(MovieDetailsRepoTestProvider.movieId) } doReturn null
+            on { getMovie(MediaDetailsRepoTestProvider.id) } doReturn null
         }
         val remote = mock<MovieDetailsRemote> {
-            on { getMovieDetails(MovieDetailsRepoTestProvider.movieId) } doReturn
-                    Result.Success(MovieDetailsRepoTestProvider.movieDetailsResponse)
+            on { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn
+                    Result.Success(MediaDetailsRepoTestProvider.mediaDetailsResponse)
         }
         val repository = MovieDetailsRepositoryImpl(local, remote)
 
-        val result = runBlocking { repository.getMovieDetailsOf(MovieDetailsRepoTestProvider.movieId) }
+        val result = runBlocking { repository.getMovieDetailsOf(MediaDetailsRepoTestProvider.id) }
 
-        val expected = Either.Success(MovieDetailsRepoTestProvider.movieDetails)
+        val expected = Either.Success(MediaDetailsRepoTestProvider.mediaDetails)
         assertEquals(expected, result)
-        verify(local).insert(MovieDetailsRepoTestProvider.movieDetailsResponse)
+        verify(local).insert(MediaDetailsRepoTestProvider.mediaDetailsResponse)
     }
 
     @Test
     fun `Return failure when error response from remote`(){
         val local = mock<MovieDetailsLocal> {
-            on { getMovie(MovieDetailsRepoTestProvider.movieId) } doReturn null
+            on { getMovie(MediaDetailsRepoTestProvider.id) } doReturn null
         }
         val errorMessage = "error"
         val errorResponse = ErrorResponse(errorMessage)
         val remote = mock<MovieDetailsRemote> {
-            on { getMovieDetails(MovieDetailsRepoTestProvider.movieId) } doReturn Result.Failure(errorResponse)
+            on { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn Result.Failure(errorResponse)
         }
         val repository = MovieDetailsRepositoryImpl(local, remote)
 
-        val result = runBlocking { repository.getMovieDetailsOf(MovieDetailsRepoTestProvider.movieId) }
+        val result = runBlocking { repository.getMovieDetailsOf(MediaDetailsRepoTestProvider.id) }
 
         val error = ErrorEntity(errorMessage)
         val expected = Either.Failure(error)

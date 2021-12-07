@@ -2,7 +2,7 @@ package joe.barker.local
 
 import joe.barker.local.moviedetails.MovieDetails
 import joe.barker.local.moviedetails.convert
-import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.MediaDetailsResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -12,7 +12,7 @@ class MovieDetailsLocalAdapterShould {
     private val tagline = "tagline"
     private val overview = "overview"
     private val releaseDate = "2020-01-02"
-    private val movieDetailsResponse = MovieDetailsResponse(id, title, tagline, overview, releaseDate)
+    private val movieDetailsResponse = MediaDetailsResponse(id, title, tagline, overview, releaseDate)
     private val movieDetails = MovieDetails(id, title, tagline, overview, releaseDate)
 
     @Test

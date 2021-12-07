@@ -4,6 +4,6 @@ import joe.barker.repository.response.ErrorResponse
 import joe.barker.repository.response.PopularMediaResponse
 import joe.barker.repository.response.Result
 
-interface PopularMoviesRemote {
-    fun getPopularMovies(): Result<PopularMediaResponse?, ErrorResponse?>
+interface PopularTvRemote {
+    fun getPopularTvShows() : Result<PopularMediaResponse?, ErrorResponse?>
 }

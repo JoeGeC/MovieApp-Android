@@ -1,6 +1,6 @@
 package joe.barker.remote.movieDetails
 
-import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.MediaDetailsResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,5 +11,5 @@ interface MovieDetailsRemoteCalls {
     fun retrieveMovie(
         @Path("id") id: Long,
         @Query("api_key") apiKey: String
-    ) : Call<MovieDetailsResponse>
+    ) : Call<MediaDetailsResponse>
 }

@@ -2,7 +2,7 @@ package joe.barker.remote
 
 import joe.barker.remote.popularMovies.PopularMoviesRemoteCalls
 import joe.barker.remote.popularMovies.PopularMoviesRemoteImpl
-import joe.barker.repository.response.PopularMoviesResponse
+import joe.barker.repository.response.PopularMediaResponse
 import joe.barker.repository.response.Result
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -12,7 +12,7 @@ import retrofit2.mock.Calls
 
 class PopularMoviesRemoteShould {
     private val apiKey = BaseRemote.API_KEY
-    private val response = PopularMoviesResponse(MovieDetailsRemoteTestProvider.responseList)
+    private val response = PopularMediaResponse(MovieDetailsRemoteTestProvider.responseList)
 
     @Test
     fun `Return movie details response on successful call`(){

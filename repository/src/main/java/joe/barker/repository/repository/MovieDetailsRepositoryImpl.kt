@@ -3,7 +3,7 @@ package joe.barker.repository.repository
 import joe.barker.repository.adapter.convert
 import joe.barker.repository.boundary.MovieDetailsLocal
 import joe.barker.repository.boundary.MovieDetailsRemote
-import joe.barker.repository.response.MovieDetailsResponse
+import joe.barker.repository.response.MediaDetailsResponse
 import joe.barker.repository.response.Result
 import joe.barker.domain.boundary.repository.MovieDetailsRepository
 import joe.barker.domain.entity.Either
@@ -23,7 +23,7 @@ class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private v
         val response = remote.getMovieDetails(movieId)
         return if (response.isSuccess) {
             val success = Result.Success(response.body)
-            local.insert(success.value as MovieDetailsResponse)
+            local.insert(success.value as MediaDetailsResponse)
             Either.Success(success.value.convert())
         } else Either.Failure((response as Result.Failure).convert())
     }
