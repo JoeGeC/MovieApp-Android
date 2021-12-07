@@ -2,9 +2,7 @@ package joe.barker.repository
 
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.repository.boundary.PopularMoviesRemote
 import joe.barker.repository.boundary.PopularTvRemote
-import joe.barker.repository.repository.PopularMoviesRepositoryImpl
 import joe.barker.repository.repository.PopularTvRepositoryImpl
 import joe.barker.repository.response.ErrorResponse
 import joe.barker.repository.response.PopularMediaResponse
