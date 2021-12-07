@@ -3,9 +3,9 @@ package joe.barker.domain
 import joe.barker.domain.entity.MediaDetails
 import java.time.LocalDate
 
-class MovieDetailsUseCaseTestProvider {
+class MediaDetailsUseCaseTestProvider {
     companion object{
-        val movieDetails1 = MediaDetails(
+        val mediaDetails1 = MediaDetails(
             1,
             "title1",
             LocalDate.of(2021, 1, 1),
@@ -15,7 +15,7 @@ class MovieDetailsUseCaseTestProvider {
             1.1f,
             "backdrop1.png"
         )
-        val movieDetails2 = MediaDetails(
+        val mediaDetails2 = MediaDetails(
             2,
             "title2",
             LocalDate.of(2022, 1, 1),
