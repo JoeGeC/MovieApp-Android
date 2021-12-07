@@ -11,7 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import joe.barker.movieapp.movieDetails.MovieDetailsPage
-import joe.barker.movieapp.popularMovies.PopularMoviesPage
+import joe.barker.movieapp.popular.PopularPage
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +35,7 @@ fun NavigationComponent(navController: NavHostController) {
         startDestination = "popular"
     ) {
         composable("popular") {
-            PopularMoviesPage(navController)
+            PopularPage(navController)
         }
         composable(
             route = "movieDetails/{movieId}",

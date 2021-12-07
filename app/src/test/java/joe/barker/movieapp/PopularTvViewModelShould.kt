@@ -1,26 +1,29 @@
 package joe.barker.movieapp
 
-import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
+import joe.barker.domain.boundary.useCase.PopularTvUseCase
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.movieapp.popular.PopularListItemModel
-import joe.barker.movieapp.popular.PopularMoviesViewModel
+import joe.barker.movieapp.popular.PopularTvViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.mockito.kotlin.*
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.never
+import org.mockito.kotlin.verify
 
-class PopularMoviesViewModelShould : PopularViewModelShould() {
+class PopularTvViewModelShould : PopularViewModelShould() {
     @Test
-    fun `Get popular movies from use case`(){
+    fun `Get popular TV from use case`(){
         val result = Either.Success(mediaList)
-        val movieUseCase = mock<PopularMoviesUseCase> {
-            onBlocking { getPopularMovies() }.doReturn(result)
+        val tvUseCase = mock<PopularTvUseCase> {
+            onBlocking { getPopularTvShows() }.doReturn(result)
         }
-        val viewModel = PopularMoviesViewModel(movieUseCase)
+        val viewModel = PopularTvViewModel(tvUseCase)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
 
         assertListItem(MediaTestProvider.popularListItemModel1, viewModel.popularList?.get(0))
         assertListItem(MediaTestProvider.popularListItemModel2, viewModel.popularList?.get(1))
@@ -29,29 +32,29 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
     }
 
     @Test
-    fun `Show error on failed movies request`() {
+    fun `Show error on failed TV request`() {
         val errorMessage = "error"
         val result = Either.Failure(ErrorEntity(errorMessage))
-        val useCase = mock<PopularMoviesUseCase>{
-            onBlocking { getPopularMovies() }.doReturn(result)
+        val tvUseCase = mock<PopularTvUseCase> {
+            onBlocking { getPopularTvShows() }.doReturn(result)
         }
-        val viewModel = PopularMoviesViewModel(useCase)
+        val viewModel = PopularTvViewModel(tvUseCase)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
     }
 
     @Test
     fun `Do nothing if already has movies`(){
-        val useCase = mock<PopularMoviesUseCase>()
-        val viewModel = PopularMoviesViewModel(useCase)
+        val useCase = mock<PopularTvUseCase>()
+        val viewModel = PopularTvViewModel(useCase)
         val movie = PopularListItemModel(1, "", "", 1.1f, "")
         viewModel.popularList = listOf(movie)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
 
-        verify(useCase, never()).getPopularMovies()
+        verify(useCase, never()).getPopularTvShows()
         Assertions.assertEquals(listOf(movie), viewModel.popularList)
     }
 }

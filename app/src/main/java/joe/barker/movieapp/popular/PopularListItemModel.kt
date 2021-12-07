@@ -1,8 +1,8 @@
-package joe.barker.movieapp.popularMovies
+package joe.barker.movieapp.popular
 
-import joe.barker.domain.entity.MovieDetails
+import joe.barker.domain.entity.MediaDetails
 
-class PopularMovieModel(
+class PopularListItemModel(
     val id: Long,
     val title: String,
     val releaseYear: String,
@@ -10,8 +10,8 @@ class PopularMovieModel(
     val posterPath: String
 )
 
-internal fun List<MovieDetails>.convert(): List<PopularMovieModel> = this.map{
-    PopularMovieModel(
+internal fun List<MediaDetails>.convert(): List<PopularListItemModel> = this.map{
+    PopularListItemModel(
         it.id,
         it.title,
         it.releaseDate.year.toString(),

@@ -1,4 +1,4 @@
-package joe.barker.movieapp.popularMovies
+package joe.barker.movieapp.popular
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -9,7 +9,7 @@ import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
 
 @Composable
-fun PopularMoviesPage(navController: NavHostController) {
+fun PopularPage(navController: NavHostController) {
     val viewModel = viewModel<PopularMoviesViewModel>()
     viewModel.fetchPopularMovies()
     val isLoading by viewModel.isLoading.collectAsState()
@@ -17,6 +17,6 @@ fun PopularMoviesPage(navController: NavHostController) {
     when {
         isLoading -> LoadingUi()
         isError -> ErrorUi()
-        else -> PopularMoviesUi(viewModel.movieList!!, navController)
+        else -> PopularUi(viewModel.popularList!!, navController)
     }
 }

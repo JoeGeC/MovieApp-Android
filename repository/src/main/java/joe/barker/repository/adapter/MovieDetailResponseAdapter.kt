@@ -1,11 +1,11 @@
 package joe.barker.repository.adapter
 
 import joe.barker.repository.response.MovieDetailsResponse
-import joe.barker.domain.entity.MovieDetails
+import joe.barker.domain.entity.MediaDetails
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-fun MovieDetailsResponse.convert() = MovieDetails(
+fun MovieDetailsResponse.convert() = MediaDetails(
     id ?: -1,
     title.orEmpty(),
     convertDate(),

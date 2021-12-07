@@ -11,8 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import joe.barker.movieapp.popularMovies.asPercentage
-import joe.barker.movieapp.popularMovies.percentageCircleColor
+import joe.barker.movieapp.popular.asPercentage
+import joe.barker.movieapp.popular.percentageCircleColor
 
 @Composable
 fun RatingCircle(score: Float, modifier: Modifier){

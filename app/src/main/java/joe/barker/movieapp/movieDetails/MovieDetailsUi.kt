@@ -61,7 +61,6 @@ fun DetailsContent(movie: MovieDetailsModel) {
                 MoviePoster(movie.posterPath)
                 MovieDetailsSide(movie)
             }
-            TaglineText(movie.tagline)
             TextWithHeader("Overview", movie.overview)
         }
     }
@@ -104,6 +103,7 @@ private fun MovieDetailsSide(movie: MovieDetailsModel) {
         TitleText(movie.title, movie.releaseYear)
         ReleaseDateText(movie.releaseDate)
         UserScore(movie, ratingCircleModifier)
+        TaglineText(movie.tagline)
     }
 }
 

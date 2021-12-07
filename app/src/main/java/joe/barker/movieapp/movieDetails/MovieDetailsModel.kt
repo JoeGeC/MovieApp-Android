@@ -1,6 +1,6 @@
 package joe.barker.movieapp.movieDetails
 
-import joe.barker.domain.entity.MovieDetails
+import joe.barker.domain.entity.MediaDetails
 import java.time.format.DateTimeFormatter
 
 class MovieDetailsModel(
@@ -16,7 +16,7 @@ class MovieDetailsModel(
 ) {
 }
 
-internal fun MovieDetails.convert(): MovieDetailsModel =
+internal fun MediaDetails.convert(): MovieDetailsModel =
     MovieDetailsModel(
         id,
         title,

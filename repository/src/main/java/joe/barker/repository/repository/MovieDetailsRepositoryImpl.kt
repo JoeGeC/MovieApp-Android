@@ -8,18 +8,18 @@ import joe.barker.repository.response.Result
 import joe.barker.domain.boundary.repository.MovieDetailsRepository
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.domain.entity.MovieDetails
+import joe.barker.domain.entity.MediaDetails
 
 class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private val remote: MovieDetailsRemote) :
     MovieDetailsRepository {
 
-    override suspend fun getMovieDetailsOf(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
+    override suspend fun getMovieDetailsOf(movieId: Long): Either<MediaDetails?, ErrorEntity?> {
         val response = local.getMovie(movieId)
             ?: return getMovieDetailsFromRemote(movieId)
         return Either.Success(response.convert())
     }
 
-    private fun getMovieDetailsFromRemote(movieId: Long): Either<MovieDetails?, ErrorEntity?> {
+    private fun getMovieDetailsFromRemote(movieId: Long): Either<MediaDetails?, ErrorEntity?> {
         val response = remote.getMovieDetails(movieId)
         return if (response.isSuccess) {
             val success = Result.Success(response.body)

@@ -4,6 +4,6 @@ import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 
-interface PopularMoviesUseCase {
-    fun getPopularMovies() : Either<List<MediaDetails>?, ErrorEntity?>
+interface PopularTvUseCase {
+    fun getPopularTvShows() : Either<List<MediaDetails>?, ErrorEntity?>
 }

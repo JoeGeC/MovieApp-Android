@@ -15,28 +15,28 @@ import org.mockito.kotlin.mock
 class MovieDetailsViewModelShould {
     @Test
     fun `Get movie details`() {
-        val result = Either.Success(MovieTestProvider.movie1)
+        val result = Either.Success(MediaTestProvider.mediaDetails1)
         val useCase = mock<MovieDetailsUseCase>{
-            onBlocking { getMovieDetailsOf(MovieTestProvider.id1) }.doReturn(result)
+            onBlocking { getMovieDetailsOf(MediaTestProvider.id1) }.doReturn(result)
         }
         val viewModel = MovieDetailsViewModel(useCase)
 
-        runBlocking { viewModel.fetchMovieDetailsOf(MovieTestProvider.id1, Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchMovieDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         assertMovieDetails(viewModel.model)
         assertFalse(viewModel.error.value)
     }
 
     private fun assertMovieDetails(result: MovieDetailsModel) {
-        assertEquals(MovieTestProvider.id1, result.id)
-        assertEquals(MovieTestProvider.title1, result.title)
-        assertEquals(MovieTestProvider.releaseYear1, result.releaseYear)
-        assertEquals(MovieTestProvider.releaseDateAsString1, result.releaseDate)
-        assertEquals(MovieTestProvider.tagline1, result.tagline)
-        assertEquals(MovieTestProvider.overview1, result.overview)
-        assertEquals(MovieTestProvider.posterPath1, result.posterPath)
-        assertEquals(MovieTestProvider.score1, result.score)
-        assertEquals(MovieTestProvider.backdropPath1, result.backdropPath)
+        assertEquals(MediaTestProvider.id1, result.id)
+        assertEquals(MediaTestProvider.title1, result.title)
+        assertEquals(MediaTestProvider.releaseYear1, result.releaseYear)
+        assertEquals(MediaTestProvider.releaseDateAsString1, result.releaseDate)
+        assertEquals(MediaTestProvider.tagline1, result.tagline)
+        assertEquals(MediaTestProvider.overview1, result.overview)
+        assertEquals(MediaTestProvider.posterPath1, result.posterPath)
+        assertEquals(MediaTestProvider.score1, result.score)
+        assertEquals(MediaTestProvider.backdropPath1, result.backdropPath)
     }
 
     @Test
@@ -44,11 +44,11 @@ class MovieDetailsViewModelShould {
         val errorMessage = "error"
         val result = Either.Failure(ErrorEntity(errorMessage))
         val useCase = mock<MovieDetailsUseCase>{
-            onBlocking { getMovieDetailsOf(MovieTestProvider.id1) }.doReturn(result)
+            onBlocking { getMovieDetailsOf(MediaTestProvider.id1) }.doReturn(result)
         }
         val viewModel = MovieDetailsViewModel(useCase)
 
-        runBlocking { viewModel.fetchMovieDetailsOf(MovieTestProvider.id1, Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchMovieDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         assertTrue(viewModel.error.value)
     }

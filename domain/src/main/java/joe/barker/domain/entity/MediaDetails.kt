@@ -2,7 +2,7 @@ package joe.barker.domain.entity
 
 import java.time.LocalDate
 
-data class MovieDetails(
+data class MediaDetails(
     val id: Long,
     val title: String,
     val releaseDate: LocalDate,

@@ -1,6 +1,6 @@
 package joe.barker.repository
 
-import joe.barker.domain.entity.MovieDetails
+import joe.barker.domain.entity.MediaDetails
 import joe.barker.repository.response.MovieDetailsResponse
 import java.time.LocalDate
 
@@ -16,6 +16,6 @@ class MovieDetailsRepoTestProvider {
         private const val score = 1.1f
         private const val backdropPath = "backdropPath.jpg"
         internal val movieDetailsResponse = MovieDetailsResponse(movieId, movieTitle, movieTagline, movieOverview, movieReleaseDateString, posterPath, score, backdropPath)
-        internal val movieDetails = MovieDetails(movieId, movieTitle, movieReleaseDate, movieTagline, movieOverview, posterPath, score, backdropPath)
+        internal val movieDetails = MediaDetails(movieId, movieTitle, movieReleaseDate, movieTagline, movieOverview, posterPath, score, backdropPath)
     }
 }

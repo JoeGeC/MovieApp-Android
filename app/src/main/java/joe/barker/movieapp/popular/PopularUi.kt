@@ -1,4 +1,4 @@
-package joe.barker.movieapp.popularMovies
+package joe.barker.movieapp.popular
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -27,15 +25,15 @@ import joe.barker.movieapp.R
 import joe.barker.movieapp.ui.RatingCircle
 
 @Composable
-fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostController) {
+fun PopularUi(itemList: List<PopularListItemModel>, navController: NavHostController) {
     Column {
-        Text(text = "Popular Movies",
+        Text(text = "What's Popular",
             fontWeight = FontWeight.Bold,
             fontSize = 32.sp,
             modifier = Modifier.padding(8.dp),
             color = MaterialTheme.colors.primary)
         LazyRow {
-            items(movieList) { movie ->
+            items(itemList) { movie ->
                 MovieListItem(movie, navController)
             }
         }
@@ -43,20 +41,20 @@ fun PopularMoviesUi(movieList: List<PopularMovieModel>, navController: NavHostCo
 }
 
 @Composable
-private fun MovieListItem(movie: PopularMovieModel, navController: NavHostController) {
+private fun MovieListItem(listItem: PopularListItemModel, navController: NavHostController) {
     Column(modifier = Modifier
         .width(180.dp)
         .padding(8.dp)
-        .clickable(onClick = { navController.navigate("movieDetails/${movie.id}") })) {
-        MoviePosterWithRating(movie)
+        .clickable(onClick = { navController.navigate("movieDetails/${listItem.id}") })) {
+        MoviePosterWithRating(listItem)
         Text(
-            text = movie.title,
+            text = listItem.title,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(horizontal = 12.dp),
             color = MaterialTheme.colors.primary
         )
         Text(
-            text = movie.releaseYear,
+            text = listItem.releaseYear,
             color = Color.Gray,
             modifier = Modifier.padding(horizontal = 12.dp),
         )
@@ -64,26 +62,31 @@ private fun MovieListItem(movie: PopularMovieModel, navController: NavHostContro
 }
 
 @Composable
-private fun MoviePosterWithRating(movie: PopularMovieModel) {
+private fun MoviePosterWithRating(listItem: PopularListItemModel) {
     Box {
-        Image(
-            painter = rememberImagePainter(
-                data = movie.posterPath.toImageUrl(),
-                builder = { placeholder(R.drawable.poster_placeholder) }
-            ),
-            contentDescription = "Movie poster",
-            modifier = Modifier
-                .padding(bottom = 16.dp)
-                .width(180.dp)
-                .clip(RoundedCornerShape(10.dp)),
-        )
+        MoviePoster(listItem)
         val ratingCircleModifier = Modifier
             .padding(end = 8.dp, top = 220.dp)
             .size(48.dp)
             .background(Color.Black, shape = CircleShape)
             .align(Alignment.TopEnd)
-        RatingCircle(movie.score, ratingCircleModifier)
+        RatingCircle(listItem.score, ratingCircleModifier)
     }
+}
+
+@Composable
+private fun MoviePoster(listItem: PopularListItemModel) {
+    Image(
+        painter = rememberImagePainter(
+            data = listItem.posterPath.toImageUrl(),
+            builder = { placeholder(R.drawable.poster_placeholder) }
+        ),
+        contentDescription = "Movie poster",
+        modifier = Modifier
+            .padding(bottom = 16.dp)
+            .width(180.dp)
+            .clip(RoundedCornerShape(10.dp)),
+    )
 }
 
 fun Float.asPercentage(): String = (this * 10).toInt().toString()
