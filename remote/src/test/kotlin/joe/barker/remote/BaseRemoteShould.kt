@@ -22,7 +22,7 @@ import java.lang.Exception
 
 class BaseRemoteShould {
     private val apiKey = BaseRemote.API_KEY
-    private val movieId: Long = MediaDetailsRemoteTestProvider.movieId1
+    private val movieId: Long = MediaDetailsRemoteTestProvider.id1
     private val errorCode = 404
     private val errorMessage = "The resource you requested could not be found."
     private val errorsJson = "{\n" +
