@@ -10,14 +10,14 @@ import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 
 class PopularTvUseCaseShould {
-    private val mediaList = listOf(
-        MediaDetailsUseCaseTestProvider.mediaDetails1,
-        MediaDetailsUseCaseTestProvider.mediaDetails2
+    private val tvList = listOf(
+        MediaDetailsUseCaseTestProvider.tvDetails1,
+        MediaDetailsUseCaseTestProvider.tvDetails2
     )
 
     @Test
     fun `Get TV details from repository`(){
-        val expected = Either.Success(mediaList)
+        val expected = Either.Success(tvList)
         val repository = mock<PopularTvRepository> {
             onBlocking { getPopularTvShows() } doReturn expected
         }

@@ -11,8 +11,8 @@ import org.mockito.kotlin.mock
 
 class PopularMoviesUseCaseShould {
     private val movieList = listOf(
-        MediaDetailsUseCaseTestProvider.mediaDetails1,
-        MediaDetailsUseCaseTestProvider.mediaDetails2
+        MediaDetailsUseCaseTestProvider.movieDetails1,
+        MediaDetailsUseCaseTestProvider.movieDetails2
     )
 
     @Test

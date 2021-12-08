@@ -12,7 +12,7 @@ import org.mockito.kotlin.mock
 class MovieDetailsUseCaseShould {
     @Test
     fun `Get movie details from repository`(){
-        val expected = Either.Success(MediaDetailsUseCaseTestProvider.mediaDetails1)
+        val expected = Either.Success(MediaDetailsUseCaseTestProvider.movieDetails1)
         val repository = mock<MovieDetailsRepository> {
             onBlocking { getMovieDetailsOf(1) } doReturn expected
         }
