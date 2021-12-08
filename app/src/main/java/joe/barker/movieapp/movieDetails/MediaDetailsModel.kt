@@ -3,7 +3,7 @@ package joe.barker.movieapp.movieDetails
 import joe.barker.domain.entity.MediaDetails
 import java.time.format.DateTimeFormatter
 
-class MovieDetailsModel(
+class MediaDetailsModel(
     val id: Long,
     val title: String,
     val releaseYear: String,
@@ -16,8 +16,8 @@ class MovieDetailsModel(
 ) {
 }
 
-internal fun MediaDetails.convert(): MovieDetailsModel =
-    MovieDetailsModel(
+internal fun MediaDetails.convert(): MediaDetailsModel =
+    MediaDetailsModel(
         id,
         title,
         releaseDate.year.toString(),

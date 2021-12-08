@@ -32,13 +32,13 @@ import joe.barker.movieapp.ui.TextWithHeader
 
 @Preview
 @Composable
-fun MovieDetailsUi() {
-    val model = MovieDetailsModel(1, "title", "1998", "29/05/1998", "tagline", "overview", "123.jpg", 1.1f, "123.jpg")
-    MovieDetailsUi(model)
+fun MediaDetailsUi() {
+    val model = MediaDetailsModel(1, "title", "1998", "29/05/1998", "tagline", "overview", "123.jpg", 1.1f, "123.jpg")
+    MediaDetailsUi(model)
 }
 
 @Composable
-fun MovieDetailsUi(model: MovieDetailsModel) {
+fun MediaDetailsUi(model: MediaDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
         Backdrop(model.backdropPath)
         DetailsContent(model)
@@ -59,7 +59,7 @@ private fun Backdrop(backdropPath: String?) {
 }
 
 @Composable
-fun DetailsContent(movie: MovieDetailsModel) {
+fun DetailsContent(media: MediaDetailsModel) {
     Box (modifier = Modifier
         .verticalScroll(rememberScrollState())
         .padding(top = 180.dp)
@@ -71,16 +71,16 @@ fun DetailsContent(movie: MovieDetailsModel) {
                 shape = RoundedCornerShape(20.dp)))
         Column(Modifier.padding(24.dp)) {
             Row(Modifier.padding(bottom = 16.dp)) {
-                MoviePoster(movie.posterPath)
-                MovieDetailsSide(movie)
+                MediaPoster(media.posterPath)
+                MediaDetailsSide(media)
             }
-            TextWithHeader("Overview", movie.overview)
+            TextWithHeader("Overview", media.overview)
         }
     }
 }
 
 @Composable
-private fun MoviePoster(posterPath: String?) {
+private fun MediaPoster(posterPath: String?) {
     if(posterPath == null) return
     GlideImage(imageModel = posterPath.toImageUrl(),
         placeHolder = ImageBitmap.imageResource(R.drawable.poster_placeholder),
@@ -94,16 +94,16 @@ private fun MoviePoster(posterPath: String?) {
 }
 
 @Composable
-private fun MovieDetailsSide(movie: MovieDetailsModel) {
+private fun MediaDetailsSide(media: MediaDetailsModel) {
     val ratingCircleModifier = Modifier
         .padding(end = 8.dp, top = 8.dp, bottom = 8.dp)
         .size(48.dp)
         .background(Color.Black, shape = CircleShape)
     Column {
-        TitleText(movie.title, movie.releaseYear)
-        ReleaseDateText(movie.releaseDate)
-        UserScore(movie, ratingCircleModifier)
-        TaglineText(movie.tagline)
+        TitleText(media.title, media.releaseYear)
+        ReleaseDateText(media.releaseDate)
+        UserScore(media, ratingCircleModifier)
+        TaglineText(media.tagline)
     }
 }
 
@@ -128,9 +128,9 @@ fun ReleaseDateText(releaseDate: String) {
 }
 
 @Composable
-private fun UserScore(movie: MovieDetailsModel, ratingCircleModifier: Modifier) {
+private fun UserScore(media: MediaDetailsModel, ratingCircleModifier: Modifier) {
     Row{
-        RatingCircle(movie.score, ratingCircleModifier)
+        RatingCircle(media.score, ratingCircleModifier)
         Text(
             text = "User\nScore",
             fontWeight = FontWeight.Bold,
@@ -152,4 +152,3 @@ private fun TaglineText(tagline: String) {
         modifier = Modifier.padding(bottom = 8.dp)
     )
 }
-

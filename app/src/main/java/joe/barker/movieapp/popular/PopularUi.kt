@@ -45,7 +45,7 @@ private fun MovieListItem(listItem: PopularListItemModel, navController: NavHost
     Column(modifier = Modifier
         .width(180.dp)
         .padding(8.dp)
-        .clickable(onClick = { navController.navigate("movieDetails/${listItem.id}") })) {
+        .clickable(onClick = { navController.navigate("${listItem.type}Details/${listItem.id}") })) {
         MoviePosterWithRating(listItem)
         Text(
             text = listItem.title,

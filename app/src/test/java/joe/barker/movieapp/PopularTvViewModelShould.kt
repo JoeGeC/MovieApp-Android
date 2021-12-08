@@ -15,9 +15,11 @@ import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
 
 class PopularTvViewModelShould : PopularViewModelShould() {
+    private val tvList = listOf(MediaTestProvider.tvDetails1, MediaTestProvider.tvDetails2)
+
     @Test
     fun `Get popular TV from use case`(){
-        val result = Either.Success(mediaList)
+        val result = Either.Success(tvList)
         val tvUseCase = mock<PopularTvUseCase> {
             onBlocking { getPopularTvShows() }.doReturn(result)
         }
@@ -25,8 +27,8 @@ class PopularTvViewModelShould : PopularViewModelShould() {
 
         runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
 
-        assertListItem(MediaTestProvider.popularListItemModel1, viewModel.popularList?.get(0))
-        assertListItem(MediaTestProvider.popularListItemModel2, viewModel.popularList?.get(1))
+        assertListItem(MediaTestProvider.popularTvModel1, viewModel.popularList?.get(0))
+        assertListItem(MediaTestProvider.popularTvModel2, viewModel.popularList?.get(1))
         Assertions.assertFalse(viewModel.error.value)
         Assertions.assertFalse(viewModel.isLoading.value)
     }
@@ -49,7 +51,7 @@ class PopularTvViewModelShould : PopularViewModelShould() {
     fun `Do nothing if already has movies`(){
         val useCase = mock<PopularTvUseCase>()
         val viewModel = PopularTvViewModel(useCase)
-        val movie = PopularListItemModel(1, "", "", 1.1f, "")
+        val movie = PopularListItemModel(1, "", "", 1.1f, "", "")
         viewModel.popularList = listOf(movie)
 
         runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }

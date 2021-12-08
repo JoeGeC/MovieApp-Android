@@ -12,9 +12,11 @@ import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
 
 class PopularMoviesViewModelShould : PopularViewModelShould() {
+    private val movieList = listOf(MediaTestProvider.movieDetails1, MediaTestProvider.movieDetails2)
+
     @Test
     fun `Get popular movies from use case`(){
-        val result = Either.Success(mediaList)
+        val result = Either.Success(movieList)
         val movieUseCase = mock<PopularMoviesUseCase> {
             onBlocking { getPopularMovies() }.doReturn(result)
         }
@@ -22,8 +24,8 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
 
         runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
 
-        assertListItem(MediaTestProvider.popularListItemModel1, viewModel.popularList?.get(0))
-        assertListItem(MediaTestProvider.popularListItemModel2, viewModel.popularList?.get(1))
+        assertListItem(MediaTestProvider.popularMovieModel1, viewModel.popularList?.get(0))
+        assertListItem(MediaTestProvider.popularMovieModel2, viewModel.popularList?.get(1))
         Assertions.assertFalse(viewModel.error.value)
         Assertions.assertFalse(viewModel.isLoading.value)
     }
@@ -46,7 +48,7 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
     fun `Do nothing if already has movies`(){
         val useCase = mock<PopularMoviesUseCase>()
         val viewModel = PopularMoviesViewModel(useCase)
-        val movie = PopularListItemModel(1, "", "", 1.1f, "")
+        val movie = PopularListItemModel(1, "", "", 1.1f, "", "")
         viewModel.popularList = listOf(movie)
 
         runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }

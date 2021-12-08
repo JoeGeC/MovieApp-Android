@@ -16,6 +16,6 @@ fun MovieDetailsPage(movieId: Long?) {
     when {
         isLoading -> LoadingUi()
         isError -> ErrorUi()
-        else -> MovieDetailsUi(viewModel.model)
+        else -> MediaDetailsUi(viewModel.model)
     }
 }

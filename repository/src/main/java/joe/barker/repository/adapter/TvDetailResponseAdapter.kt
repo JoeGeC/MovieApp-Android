@@ -1,6 +1,7 @@
 package joe.barker.repository.adapter
 
 import joe.barker.domain.entity.MediaDetails
+import joe.barker.domain.entity.MediaType
 import joe.barker.repository.response.TvDetailsResponse
 
 fun TvDetailsResponse.convert() = MediaDetails(
@@ -11,5 +12,6 @@ fun TvDetailsResponse.convert() = MediaDetails(
     overview.orEmpty(),
     poster_path.orEmpty(),
     vote_average ?: 0f,
-    backdrop_path.orEmpty()
+    backdrop_path.orEmpty(),
+    MediaType.Tv
 )

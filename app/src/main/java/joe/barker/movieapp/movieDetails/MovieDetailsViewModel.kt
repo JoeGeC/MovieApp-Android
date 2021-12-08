@@ -16,7 +16,7 @@ class MovieDetailsViewModel(
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
-    lateinit var model: MovieDetailsModel
+    lateinit var model: MediaDetailsModel
 
     fun fetchMovieDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO){
         job( {

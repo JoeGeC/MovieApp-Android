@@ -10,6 +10,11 @@ data class MediaDetails(
     val overview: String,
     val posterPath: String,
     val score: Float,
-    val backdropPath: String
+    val backdropPath: String,
+    val type: MediaType
 ) {
+}
+
+enum class MediaType {
+    Movie, Tv
 }

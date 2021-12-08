@@ -3,7 +3,7 @@ package joe.barker.movieapp
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
-import joe.barker.movieapp.movieDetails.MovieDetailsModel
+import joe.barker.movieapp.movieDetails.MediaDetailsModel
 import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -15,7 +15,7 @@ import org.mockito.kotlin.mock
 class MovieDetailsViewModelShould {
     @Test
     fun `Get movie details`() {
-        val result = Either.Success(MediaTestProvider.mediaDetails1)
+        val result = Either.Success(MediaTestProvider.movieDetails1)
         val useCase = mock<MovieDetailsUseCase>{
             onBlocking { getMovieDetailsOf(MediaTestProvider.id1) }.doReturn(result)
         }
@@ -27,7 +27,7 @@ class MovieDetailsViewModelShould {
         assertFalse(viewModel.error.value)
     }
 
-    private fun assertMovieDetails(result: MovieDetailsModel) {
+    private fun assertMovieDetails(result: MediaDetailsModel) {
         assertEquals(MediaTestProvider.id1, result.id)
         assertEquals(MediaTestProvider.title1, result.title)
         assertEquals(MediaTestProvider.releaseYear1, result.releaseYear)

@@ -7,8 +7,10 @@ class PopularListItemModel(
     val title: String,
     val releaseYear: String,
     val score: Float,
-    val posterPath: String
-)
+    val posterPath: String,
+    val type: String
+) {
+}
 
 internal fun List<MediaDetails>.convert(): List<PopularListItemModel> = this.map{
     PopularListItemModel(
@@ -16,6 +18,7 @@ internal fun List<MediaDetails>.convert(): List<PopularListItemModel> = this.map
         it.title,
         it.releaseDate.year.toString(),
         it.score,
-        it.posterPath
+        it.posterPath,
+        it.type.toString().lowercase()
     )
 }
