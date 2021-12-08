@@ -15,7 +15,7 @@ import org.mockito.kotlin.mock
 
 class PopularTvRepositoryShould {
     private val response = PopularTvResponse(listOf(MediaDetailsRepoTestProvider.tvDetailsResponse))
-    private val mediaList = listOf(MediaDetailsRepoTestProvider.mediaDetails)
+    private val mediaList = listOf(MediaDetailsRepoTestProvider.tvDetails)
 
     @Test
     fun `Get popular TV shows from remote`(){

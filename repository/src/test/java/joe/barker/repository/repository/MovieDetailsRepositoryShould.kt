@@ -26,7 +26,7 @@ class MovieDetailsRepositoryShould {
 
         val result = runBlocking { repository.getMovieDetailsOf(MediaDetailsRepoTestProvider.id) }
 
-        val expected = Either.Success(MediaDetailsRepoTestProvider.mediaDetails)
+        val expected = Either.Success(MediaDetailsRepoTestProvider.movieDetails)
         assertEquals(result, expected)
     }
 
@@ -43,7 +43,7 @@ class MovieDetailsRepositoryShould {
 
         val result = runBlocking { repository.getMovieDetailsOf(MediaDetailsRepoTestProvider.id) }
 
-        val expected = Either.Success(MediaDetailsRepoTestProvider.mediaDetails)
+        val expected = Either.Success(MediaDetailsRepoTestProvider.movieDetails)
         assertEquals(expected, result)
         verify(local).insert(MediaDetailsRepoTestProvider.movieDetailsResponse)
     }
