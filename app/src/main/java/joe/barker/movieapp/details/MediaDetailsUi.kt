@@ -1,4 +1,4 @@
-package joe.barker.movieapp.movieDetails
+package joe.barker.movieapp.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.Image

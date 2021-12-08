@@ -2,7 +2,9 @@ package joe.barker.movieapp
 
 import joe.barker.domain.entity.MediaDetails
 import joe.barker.domain.entity.MediaType
+import joe.barker.movieapp.details.MediaDetailsModel
 import joe.barker.movieapp.popular.PopularListItemModel
+import org.junit.jupiter.api.Assertions
 import java.time.LocalDate
 
 class MediaTestProvider {
@@ -40,5 +42,16 @@ class MediaTestProvider {
         val tvDetails2 = MediaDetails(id2, title2, releaseDate2, tagline2, overview2, posterPath2, score2, backdropPath2, tvType)
         val popularTvModel2 = PopularListItemModel(id2, title2, releaseYear2, score2, posterPath2, tvString)
 
+        fun assertMediaDetails(result: MediaDetailsModel) {
+            Assertions.assertEquals(id1, result.id)
+            Assertions.assertEquals(title1, result.title)
+            Assertions.assertEquals(releaseYear1, result.releaseYear)
+            Assertions.assertEquals(releaseDateAsString1, result.releaseDate)
+            Assertions.assertEquals(tagline1, result.tagline)
+            Assertions.assertEquals(overview1, result.overview)
+            Assertions.assertEquals(posterPath1, result.posterPath)
+            Assertions.assertEquals(score1, result.score)
+            Assertions.assertEquals(backdropPath1, result.backdropPath)
+        }
     }
 }

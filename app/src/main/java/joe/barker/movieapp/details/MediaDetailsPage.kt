@@ -1,16 +1,17 @@
-package joe.barker.movieapp.movieDetails
+package joe.barker.movieapp.details
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
 import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
 
 @Composable
-fun MovieDetailsPage(movieId: Long?) {
-    val viewModel = viewModel<MovieDetailsViewModel>()
-    if(movieId != null) viewModel.fetchMovieDetailsOf(movieId)
+fun MediaDetailsPage(
+    mediaId: Long?,
+    viewModel: DetailsViewModel
+) {
+    if(mediaId != null) viewModel.fetchDetailsOf(mediaId)
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {

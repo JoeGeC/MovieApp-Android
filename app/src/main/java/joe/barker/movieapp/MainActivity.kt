@@ -10,7 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import joe.barker.movieapp.movieDetails.MovieDetailsPage
+import joe.barker.movieapp.details.MediaDetailsPage
+import joe.barker.movieapp.details.MovieDetailsViewModel
 import joe.barker.movieapp.popular.PopularPage
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
@@ -41,13 +42,13 @@ fun NavigationComponent(navController: NavHostController) {
             route = "movieDetails/{movieId}",
             arguments = listOf(navArgument("movieId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MovieDetailsPage(backStackEntry.arguments?.getLong("movieId"))
+            MediaDetailsPage(backStackEntry.arguments?.getLong("movieId"), MovieDetailsViewModel())
         }
         composable(
             route = "tvDetails/{tvShowId}",
             arguments = listOf(navArgument("tvShowId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MovieDetailsPage(backStackEntry.arguments?.getLong("tvShowId"))
+            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), MovieDetailsViewModel())
         }
     }
 }

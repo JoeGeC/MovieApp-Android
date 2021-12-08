@@ -1,18 +1,14 @@
-package joe.barker.movieapp.movieDetails
+package joe.barker.movieapp.details
 
 import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
 import joe.barker.movieapp.config
-import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 class MovieDetailsViewModel(
     private val useCase: MovieDetailsUseCase = config.movieDetailsUseCase
 ) : DetailsViewModel() {
 
-    fun fetchMovieDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO){
+    override fun fetchDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher){
         fetchFrom({ useCase.getMovieDetailsOf(movieId) }, dispatcher)
     }
 }

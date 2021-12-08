@@ -3,8 +3,8 @@ package joe.barker.movieapp
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
-import joe.barker.movieapp.movieDetails.MediaDetailsModel
-import joe.barker.movieapp.movieDetails.MovieDetailsViewModel
+import joe.barker.movieapp.details.MediaDetailsModel
+import joe.barker.movieapp.details.MovieDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
@@ -21,7 +21,7 @@ class MovieDetailsViewModelShould {
         }
         val viewModel = MovieDetailsViewModel(useCase)
 
-        runBlocking { viewModel.fetchMovieDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         assertMovieDetails(viewModel.model)
         assertFalse(viewModel.error.value)
@@ -48,7 +48,7 @@ class MovieDetailsViewModelShould {
         }
         val viewModel = MovieDetailsViewModel(useCase)
 
-        runBlocking { viewModel.fetchMovieDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         assertTrue(viewModel.error.value)
     }
