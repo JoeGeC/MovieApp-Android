@@ -10,6 +10,6 @@ class TvDetailsUseCaseImpl(
     private val repository: TvDetailsRepository
 ) : TvDetailsUseCase {
 
-    override fun getTvDetailsOf(id: Long): Either<MediaDetails?, ErrorEntity?> =
+    override suspend fun getTvDetailsOf(id: Long): Either<MediaDetails?, ErrorEntity?> =
         repository.getTvDetailsOf(id)
 }

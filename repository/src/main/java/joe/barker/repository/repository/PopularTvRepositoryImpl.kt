@@ -5,7 +5,7 @@ import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 import joe.barker.repository.adapter.convertTvResponse
-import joe.barker.repository.boundary.PopularTvRemote
+import joe.barker.repository.boundary.remote.PopularTvRemote
 
 class PopularTvRepositoryImpl(
     private val remote: PopularTvRemote

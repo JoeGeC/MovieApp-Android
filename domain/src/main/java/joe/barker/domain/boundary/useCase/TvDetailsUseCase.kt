@@ -5,5 +5,5 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 
 interface TvDetailsUseCase {
-    fun getTvDetailsOf(id: Long) : Either<MediaDetails?, ErrorEntity?>
+    suspend fun getTvDetailsOf(id: Long) : Either<MediaDetails?, ErrorEntity?>
 }

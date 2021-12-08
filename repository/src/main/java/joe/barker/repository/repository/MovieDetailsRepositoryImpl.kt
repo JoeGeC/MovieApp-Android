@@ -1,8 +1,8 @@
 package joe.barker.repository.repository
 
 import joe.barker.repository.adapter.convert
-import joe.barker.repository.boundary.MovieDetailsLocal
-import joe.barker.repository.boundary.MovieDetailsRemote
+import joe.barker.repository.boundary.local.MovieDetailsLocal
+import joe.barker.repository.boundary.remote.MovieDetailsRemote
 import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.repository.response.Result
 import joe.barker.domain.boundary.repository.MovieDetailsRepository

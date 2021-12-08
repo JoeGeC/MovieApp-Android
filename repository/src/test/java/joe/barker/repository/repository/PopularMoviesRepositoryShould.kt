@@ -3,7 +3,7 @@ package joe.barker.repository.repository
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.repository.MediaDetailsRepoTestProvider
-import joe.barker.repository.boundary.PopularMoviesRemote
+import joe.barker.repository.boundary.remote.PopularMoviesRemote
 import joe.barker.repository.response.ErrorResponse
 import joe.barker.repository.response.PopularMovieResponse
 import joe.barker.repository.response.Result

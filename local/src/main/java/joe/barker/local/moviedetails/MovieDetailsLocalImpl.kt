@@ -1,6 +1,6 @@
 package joe.barker.local.moviedetails
 
-import joe.barker.repository.boundary.MovieDetailsLocal
+import joe.barker.repository.boundary.local.MovieDetailsLocal
 import joe.barker.repository.response.MovieDetailsResponse
 import joe.barker.local.MovieDatabase
 
