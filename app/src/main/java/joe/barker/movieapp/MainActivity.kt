@@ -43,5 +43,11 @@ fun NavigationComponent(navController: NavHostController) {
         ) { backStackEntry ->
             MovieDetailsPage(backStackEntry.arguments?.getLong("movieId"))
         }
+        composable(
+            route = "tvDetails/{tvShowId}",
+            arguments = listOf(navArgument("tvShowId") { type = NavType.LongType })
+        ) { backStackEntry ->
+            MovieDetailsPage(backStackEntry.arguments?.getLong("tvShowId"))
+        }
     }
 }

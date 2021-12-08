@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 
 class PopularMoviesViewModel(
     private val movieUseCase: PopularMoviesUseCase = config.popularMoviesUseCase,
-) : BasePopularViewModel() {
+) : PopularViewModel() {
 
     fun fetchPopularMovies(dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         fetchFrom({ movieUseCase.getPopularMovies() }, dispatcher)

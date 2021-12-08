@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 
 class PopularTvViewModel(
     private val useCase: PopularTvUseCase = config.popularTvUseCase
-) : BasePopularViewModel() {
+) : PopularViewModel() {
 
     fun fetchPopularTvShows(dispatcher: CoroutineDispatcher = Dispatchers.IO) {
         fetchFrom({ useCase.getPopularTvShows() }, dispatcher)
