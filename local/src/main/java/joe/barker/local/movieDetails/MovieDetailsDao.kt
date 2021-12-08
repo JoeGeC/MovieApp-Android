@@ -1,4 +1,4 @@
-package joe.barker.local.moviedetails
+package joe.barker.local.movieDetails
 
 import androidx.room.Dao
 import androidx.room.Delete

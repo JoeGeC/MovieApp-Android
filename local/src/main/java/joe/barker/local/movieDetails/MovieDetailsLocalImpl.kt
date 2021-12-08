@@ -1,4 +1,4 @@
-package joe.barker.local.moviedetails
+package joe.barker.local.movieDetails
 
 import joe.barker.repository.boundary.local.MovieDetailsLocal
 import joe.barker.repository.response.MovieDetailsResponse

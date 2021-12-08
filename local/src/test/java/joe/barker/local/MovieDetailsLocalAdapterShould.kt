@@ -1,7 +1,7 @@
 package joe.barker.local
 
-import joe.barker.local.moviedetails.MovieDetails
-import joe.barker.local.moviedetails.convert
+import joe.barker.local.movieDetails.MovieDetails
+import joe.barker.local.movieDetails.convert
 import joe.barker.repository.response.MovieDetailsResponse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

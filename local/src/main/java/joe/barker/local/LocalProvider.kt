@@ -2,7 +2,7 @@ package joe.barker.local
 
 import android.content.Context
 import androidx.room.Room
-import joe.barker.local.moviedetails.MovieDetailsLocalImpl
+import joe.barker.local.movieDetails.MovieDetailsLocalImpl
 
 class LocalProvider(context: Context) {
     private val database = Room.databaseBuilder(context, MovieDatabase::class.java, "moviedatabase").build()
