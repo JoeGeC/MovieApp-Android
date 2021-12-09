@@ -5,5 +5,5 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 
 interface PopularMoviesRepository {
-    fun getPopularMovies() : Either<List<MediaDetails>?, ErrorEntity?>
+    suspend fun getPopularMovies() : Either<List<MediaDetails>?, ErrorEntity?>
 }

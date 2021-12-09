@@ -1,7 +1,5 @@
 package joe.barker.remote
 
-import joe.barker.remote.movieDetails.MovieDetailsRemoteCalls
-import joe.barker.remote.movieDetails.MovieDetailsRemoteImpl
 import joe.barker.remote.tvDetails.TvDetailsRemoteCalls
 import joe.barker.remote.tvDetails.TvDetailsRemoteImpl
 import joe.barker.repository.response.Result

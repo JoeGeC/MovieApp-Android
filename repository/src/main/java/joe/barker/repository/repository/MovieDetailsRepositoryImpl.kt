@@ -19,7 +19,7 @@ class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private v
         return Either.Success(response.convert())
     }
 
-    private fun getMovieDetailsFromRemote(movieId: Long): Either<MediaDetails?, ErrorEntity?> {
+    private suspend fun getMovieDetailsFromRemote(movieId: Long): Either<MediaDetails?, ErrorEntity?> {
         val response = remote.getMovieDetails(movieId)
         return if (response.isSuccess) {
             val success = Result.Success(response.body)

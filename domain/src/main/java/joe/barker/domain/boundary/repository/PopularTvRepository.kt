@@ -5,6 +5,6 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 
 interface PopularTvRepository {
-    fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?>
+    suspend fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?>
 
 }

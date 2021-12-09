@@ -15,9 +15,9 @@ abstract class DetailsViewModel : ViewModel() {
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
-    lateinit var model: MediaDetailsModel
+    var model: MediaDetailsModel? = null
 
-    abstract fun fetchDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO)
+    abstract fun fetchDetailsOf(id: Long, dispatcher: CoroutineDispatcher = Dispatchers.IO)
 
     protected fun fetchFrom(
         useCaseCall: suspend () -> Either<MediaDetails?, ErrorEntity?>,

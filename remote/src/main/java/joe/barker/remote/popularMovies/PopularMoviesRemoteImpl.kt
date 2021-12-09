@@ -12,6 +12,6 @@ class PopularMoviesRemoteImpl(
     )
 ) : BaseRemote(), PopularMoviesRemote {
 
-    override fun getPopularMovies(): Result<PopularMovieResponse?, ErrorResponse?> =
+    override suspend fun getPopularMovies(): Result<PopularMovieResponse?, ErrorResponse?> =
         tryRemote { remote.retrievePopularMovies(API_KEY) }
 }

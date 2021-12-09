@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import joe.barker.movieapp.details.MediaDetailsPage
 import joe.barker.movieapp.details.MovieDetailsViewModel
+import joe.barker.movieapp.details.TvDetailsViewModel
 import joe.barker.movieapp.popular.PopularPage
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
@@ -48,7 +49,7 @@ fun NavigationComponent(navController: NavHostController) {
             route = "tvDetails/{tvShowId}",
             arguments = listOf(navArgument("tvShowId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), MovieDetailsViewModel())
+            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), TvDetailsViewModel())
         }
     }
 }

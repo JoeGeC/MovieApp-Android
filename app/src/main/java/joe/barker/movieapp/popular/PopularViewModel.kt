@@ -17,7 +17,7 @@ open class PopularViewModel : ViewModel() {
     var popularList: List<PopularListItemModel>? = null
 
     protected fun fetchFrom(
-        useCaseCall: () -> Either<List<MediaDetails>?, ErrorEntity?>,
+        useCaseCall: suspend () -> Either<List<MediaDetails>?, ErrorEntity?>,
         dispatcher: CoroutineDispatcher
     ) {
         if(popularList != null) return

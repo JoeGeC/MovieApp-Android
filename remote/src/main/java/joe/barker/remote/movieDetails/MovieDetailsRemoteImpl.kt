@@ -12,6 +12,6 @@ class MovieDetailsRemoteImpl(
     )
 ) : BaseRemote(), MovieDetailsRemote {
 
-    override fun getMovieDetails(movieId: Long): Result<MovieDetailsResponse?, ErrorResponse?> =
+    override suspend fun getMovieDetails(movieId: Long): Result<MovieDetailsResponse?, ErrorResponse?> =
         tryRemote { remote.retrieveMovie(movieId, API_KEY) }
 }

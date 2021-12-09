@@ -16,7 +16,7 @@ fun MediaDetailsPage(
     val isError by viewModel.error.collectAsState()
     when {
         isLoading -> LoadingUi()
-        isError -> ErrorUi()
-        else -> MediaDetailsUi(viewModel.model)
+        isError || viewModel.model == null -> ErrorUi()
+        else -> MediaDetailsUi(viewModel.model!!)
     }
 }

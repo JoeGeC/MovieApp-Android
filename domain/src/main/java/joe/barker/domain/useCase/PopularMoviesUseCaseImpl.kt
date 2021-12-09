@@ -10,6 +10,6 @@ class PopularMoviesUseCaseImpl(
     private val repository: PopularMoviesRepository
 ) : PopularMoviesUseCase {
 
-    override fun getPopularMovies(): Either<List<MediaDetails>?, ErrorEntity?> =
+    override suspend fun getPopularMovies(): Either<List<MediaDetails>?, ErrorEntity?> =
         repository.getPopularMovies()
 }

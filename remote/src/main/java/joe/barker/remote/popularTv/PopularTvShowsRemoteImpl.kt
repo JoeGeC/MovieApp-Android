@@ -12,6 +12,6 @@ class PopularTvShowsRemoteImpl(
     )
 ) : BaseRemote(), PopularTvRemote {
 
-    override fun getPopularTvShows(): Result<PopularTvResponse?, ErrorResponse?> =
+    override suspend fun getPopularTvShows(): Result<PopularTvResponse?, ErrorResponse?> =
         tryRemote { remote.retrievePopularTvShows(API_KEY) }
 }

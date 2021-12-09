@@ -12,6 +12,6 @@ class TvDetailsRemoteImpl(
     )
 ) : BaseRemote(), TvDetailsRemote {
 
-    override fun getTvDetails(id: Long): Result<TvDetailsResponse?, ErrorResponse?> =
+    override suspend fun getTvDetails(id: Long): Result<TvDetailsResponse?, ErrorResponse?> =
         tryRemote { remote.retrieveTvDetails(id, API_KEY) }
 }

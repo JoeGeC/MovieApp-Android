@@ -11,6 +11,6 @@ class PopularTvRepositoryImpl(
     private val remote: PopularTvRemote
 ) : PopularTvRepository {
 
-    override fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?> =
+    override suspend fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?> =
         remote.getPopularTvShows().convertTvResponse()
 }

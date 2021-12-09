@@ -8,8 +8,9 @@ class MovieDetailsViewModel(
     private val useCase: MovieDetailsUseCase = config.movieDetailsUseCase
 ) : DetailsViewModel() {
 
-    override fun fetchDetailsOf(movieId: Long, dispatcher: CoroutineDispatcher){
-        fetchFrom({ useCase.getMovieDetailsOf(movieId) }, dispatcher)
+    override fun fetchDetailsOf(id: Long, dispatcher: CoroutineDispatcher){
+        if(model != null) return
+        fetchFrom({ useCase.getMovieDetailsOf(id) }, dispatcher)
     }
 }
 

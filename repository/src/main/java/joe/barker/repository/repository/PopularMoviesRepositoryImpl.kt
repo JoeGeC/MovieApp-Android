@@ -11,7 +11,7 @@ class PopularMoviesRepositoryImpl(
     private val remote: PopularMoviesRemote
 ) : PopularMoviesRepository {
 
-    override fun getPopularMovies(): Either<List<MediaDetails>?, ErrorEntity?> =
+    override suspend fun getPopularMovies(): Either<List<MediaDetails>?, ErrorEntity?> =
         remote.getPopularMovies().convertMovieResponse()
 }
 

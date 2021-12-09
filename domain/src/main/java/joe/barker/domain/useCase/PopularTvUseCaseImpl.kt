@@ -10,6 +10,6 @@ class PopularTvUseCaseImpl(
     private val repository: PopularTvRepository
 ) : PopularTvUseCase {
 
-    override fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?> =
+    override suspend fun getPopularTvShows(): Either<List<MediaDetails>?, ErrorEntity?> =
         repository.getPopularTvShows()
 }
