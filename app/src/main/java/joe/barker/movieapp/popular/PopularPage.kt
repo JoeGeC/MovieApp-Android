@@ -1,6 +1,7 @@
 package joe.barker.movieapp.popular
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -11,7 +12,9 @@ import joe.barker.movieapp.ui.LoadingUi
 @Composable
 fun PopularPage(navController: NavHostController) {
     val viewModel = viewModel<PopularMoviesViewModel>()
-    viewModel.fetchPopularMovies()
+    LaunchedEffect(Unit, block = {
+        viewModel.fetchPopularMovies()
+    })
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {

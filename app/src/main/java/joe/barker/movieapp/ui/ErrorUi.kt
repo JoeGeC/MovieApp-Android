@@ -2,6 +2,7 @@ package joe.barker.movieapp.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +16,9 @@ fun ErrorUi() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text("Error!")
+        Text(
+            "Error!",
+            color = MaterialTheme.colors.primary
+        )
     }
 }
