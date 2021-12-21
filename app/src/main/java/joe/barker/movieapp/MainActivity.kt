@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -21,17 +23,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val navController = rememberNavController()
-
             MovieAppTheme {
-                NavigationComponent(navController)
+                NavigationComponent()
             }
         }
     }
 }
 
 @Composable
-fun NavigationComponent(navController: NavHostController) {
+fun NavigationComponent() {
+    val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {    }
+    val navController = rememberNavController()
     NavHost(
         navController = navController,
         startDestination = "popular"
@@ -43,13 +45,15 @@ fun NavigationComponent(navController: NavHostController) {
             route = "movieDetails/{movieId}",
             arguments = listOf(navArgument("movieId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MediaDetailsPage(backStackEntry.arguments?.getLong("movieId"), MovieDetailsViewModel())
+            val viewModel = viewModel<MovieDetailsViewModel>(viewModelStoreOwner = viewModelStoreOwner)
+            MediaDetailsPage(backStackEntry.arguments?.getLong("movieId"), viewModel)
         }
         composable(
             route = "tvDetails/{tvShowId}",
             arguments = listOf(navArgument("tvShowId") { type = NavType.LongType })
         ) { backStackEntry ->
-            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), TvDetailsViewModel())
+            val viewModel = viewModel<TvDetailsViewModel>(viewModelStoreOwner = viewModelStoreOwner)
+            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), viewModel)
         }
     }
 }

@@ -23,8 +23,9 @@ class MovieDetailsViewModelShould {
 
         runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
-        assertMovieDetails(viewModel.model)
+        assertMovieDetails(viewModel.model!!)
         assertFalse(viewModel.error.value)
+        assertFalse(viewModel.isLoading.value)
     }
 
     private fun assertMovieDetails(result: MediaDetailsModel) {
@@ -51,5 +52,6 @@ class MovieDetailsViewModelShould {
         runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         assertTrue(viewModel.error.value)
+        assertFalse(viewModel.isLoading.value)
     }
 }

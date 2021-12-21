@@ -9,7 +9,6 @@ class TvDetailsViewModel(
 ) : DetailsViewModel() {
 
     override fun fetchDetailsOf(id: Long, dispatcher: CoroutineDispatcher) {
-        if(model != null) return
         fetchFrom({ useCase.getTvDetailsOf(id) }, dispatcher)
     }
 }

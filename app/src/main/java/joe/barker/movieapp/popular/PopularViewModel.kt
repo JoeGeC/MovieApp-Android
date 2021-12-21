@@ -6,21 +6,23 @@ import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 import joe.barker.movieapp.job
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-open class PopularViewModel : ViewModel() {
+abstract class PopularViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _error = MutableStateFlow(false)
     val error: StateFlow<Boolean> = _error
     var popularList: List<PopularListItemModel>? = null
 
+    abstract fun fetchPopular(dispatcher: CoroutineDispatcher = Dispatchers.IO)
+
     protected fun fetchFrom(
         useCaseCall: suspend () -> Either<List<MediaDetails>?, ErrorEntity?>,
         dispatcher: CoroutineDispatcher
     ) {
-        if(popularList != null) return
         job( {
             _isLoading.value = true
             val result = useCaseCall.invoke()

@@ -10,8 +10,10 @@ import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
 import joe.barker.domain.entity.MediaDetails
 
-class MovieDetailsRepositoryImpl(private val local: MovieDetailsLocal, private val remote: MovieDetailsRemote) :
-    MovieDetailsRepository {
+class MovieDetailsRepositoryImpl(
+    private val local: MovieDetailsLocal,
+    private val remote: MovieDetailsRemote
+) : MovieDetailsRepository {
 
     override suspend fun getMovieDetailsOf(movieId: Long): Either<MediaDetails?, ErrorEntity?> {
         val response = local.getMovie(movieId)

@@ -12,9 +12,7 @@ fun MediaDetailsPage(
     mediaId: Long?,
     viewModel: DetailsViewModel
 ) {
-    LaunchedEffect(Unit, block = {
-        viewModel.fetchDetailsOf(mediaId!!)
-    })
+    LaunchedEffect(Unit) { viewModel.fetchDetailsOf(mediaId!!) }
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {

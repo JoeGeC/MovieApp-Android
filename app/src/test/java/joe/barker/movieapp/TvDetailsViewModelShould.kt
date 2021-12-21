@@ -1,10 +1,8 @@
 package joe.barker.movieapp
 
-import joe.barker.domain.boundary.useCase.MovieDetailsUseCase
 import joe.barker.domain.boundary.useCase.TvDetailsUseCase
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.movieapp.details.MovieDetailsViewModel
 import joe.barker.movieapp.details.TvDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -24,8 +22,9 @@ class TvDetailsViewModelShould {
 
         runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
-        MediaTestProvider.assertMediaDetails(viewModel.model)
+        MediaTestProvider.assertMediaDetails(viewModel.model!!)
         Assertions.assertFalse(viewModel.error.value)
+        Assertions.assertFalse(viewModel.isLoading.value)
     }
 
     @Test
@@ -40,5 +39,6 @@ class TvDetailsViewModelShould {
         runBlocking { viewModel.fetchDetailsOf(MediaTestProvider.id1, Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
+        Assertions.assertFalse(viewModel.isLoading.value)
     }
 }

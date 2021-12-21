@@ -9,10 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.never
-import org.mockito.kotlin.verify
+import org.mockito.kotlin.*
 
 class PopularTvViewModelShould : PopularViewModelShould() {
     private val tvList = listOf(MediaTestProvider.tvDetails1, MediaTestProvider.tvDetails2)
@@ -25,7 +22,7 @@ class PopularTvViewModelShould : PopularViewModelShould() {
         }
         val viewModel = PopularTvViewModel(tvUseCase)
 
-        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
         assertListItem(MediaTestProvider.popularTvModel1, viewModel.popularList?.get(0))
         assertListItem(MediaTestProvider.popularTvModel2, viewModel.popularList?.get(1))
@@ -42,7 +39,7 @@ class PopularTvViewModelShould : PopularViewModelShould() {
         }
         val viewModel = PopularTvViewModel(tvUseCase)
 
-        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
     }
@@ -54,9 +51,9 @@ class PopularTvViewModelShould : PopularViewModelShould() {
         val movie = PopularListItemModel(1, "", "", 1.1f, "", "")
         viewModel.popularList = listOf(movie)
 
-        runBlocking { viewModel.fetchPopularTvShows(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
-        verify(useCase, never()).getPopularTvShows()
+        verifyBlocking(useCase, never()) { getPopularTvShows() }
         Assertions.assertEquals(listOf(movie), viewModel.popularList)
     }
 }

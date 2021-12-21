@@ -2,7 +2,7 @@ package joe.barker.movieapp.popular
 
 import joe.barker.domain.entity.MediaDetails
 
-class PopularListItemModel(
+data class PopularListItemModel(
     val id: Long,
     val title: String,
     val releaseYear: String,

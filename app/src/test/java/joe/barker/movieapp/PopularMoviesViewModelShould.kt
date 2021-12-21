@@ -22,7 +22,7 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
         }
         val viewModel = PopularMoviesViewModel(movieUseCase)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
         assertListItem(MediaTestProvider.popularMovieModel1, viewModel.popularList?.get(0))
         assertListItem(MediaTestProvider.popularMovieModel2, viewModel.popularList?.get(1))
@@ -39,7 +39,7 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
         }
         val viewModel = PopularMoviesViewModel(useCase)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
     }
@@ -51,9 +51,9 @@ class PopularMoviesViewModelShould : PopularViewModelShould() {
         val movie = PopularListItemModel(1, "", "", 1.1f, "", "")
         viewModel.popularList = listOf(movie)
 
-        runBlocking { viewModel.fetchPopularMovies(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
-        verify(useCase, never()).getPopularMovies()
+        verifyBlocking(useCase, never()) { getPopularMovies() }
         Assertions.assertEquals(listOf(movie), viewModel.popularList)
     }
 }
