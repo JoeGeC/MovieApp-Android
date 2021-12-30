@@ -5,6 +5,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
+import joe.barker.movieapp.ui.MediaList
 
 @Composable
 fun PopularPage(navController: NavHostController) {
@@ -13,8 +14,8 @@ fun PopularPage(navController: NavHostController) {
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     when {
-        isLoading -> LoadingUi()
-        isError -> ErrorUi()
-        else -> PopularUi(viewModel, navController)
+        isLoading -> PopularUi(viewModel) { LoadingUi() }
+        isError -> PopularUi(viewModel) { ErrorUi() }
+        else -> PopularUi(viewModel) { MediaList(viewModel, navController) }
     }
 }
