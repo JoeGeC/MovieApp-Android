@@ -3,7 +3,7 @@ package joe.barker.movieapp
 import joe.barker.movieapp.popular.PopularListItemModel
 import org.junit.jupiter.api.Assertions
 
-open class PopularViewModelShould {
+open class PopularListItemAsserter {
     protected fun assertListItem(expected: PopularListItemModel, result: PopularListItemModel?) {
         Assertions.assertEquals(expected.id, result?.id)
         Assertions.assertEquals(expected.title, result?.title)

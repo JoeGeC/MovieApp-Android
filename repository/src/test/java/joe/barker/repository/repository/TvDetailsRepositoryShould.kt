@@ -36,7 +36,7 @@ class TvDetailsRepositoryShould {
             on { getTvShow(MediaDetailsRepoTestProvider.id) } doReturn null
         }
         val remote = mock<TvDetailsRemote> {
-            on { getTvDetails(MediaDetailsRepoTestProvider.id) } doReturn
+            onBlocking { getTvDetails(MediaDetailsRepoTestProvider.id) } doReturn
                     Result.Success(MediaDetailsRepoTestProvider.tvDetailsResponse)
         }
         val repository = TvDetailsRepositoryImpl(local, remote)
@@ -56,7 +56,7 @@ class TvDetailsRepositoryShould {
         val errorMessage = "error"
         val errorResponse = ErrorResponse(errorMessage)
         val remote = mock<TvDetailsRemote> {
-            on { getTvDetails(MediaDetailsRepoTestProvider.id) } doReturn Result.Failure(errorResponse)
+            onBlocking { getTvDetails(MediaDetailsRepoTestProvider.id) } doReturn Result.Failure(errorResponse)
         }
         val repository = TvDetailsRepositoryImpl(local, remote)
 

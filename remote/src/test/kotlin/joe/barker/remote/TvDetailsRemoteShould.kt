@@ -14,7 +14,7 @@ class TvDetailsRemoteShould {
     private val tvId: Long = MediaDetailsRemoteTestProvider.id1
 
     @Test
-    fun `Return tv details response on successful call`(){
+    suspend fun `Return tv details response on successful call`(){
         val response = MediaDetailsRemoteTestProvider.tvResponse1
         val remoteCalls = mock<TvDetailsRemoteCalls> {
             on { retrieveTvDetails(tvId, apiKey) }.doReturn(Calls.response(response))

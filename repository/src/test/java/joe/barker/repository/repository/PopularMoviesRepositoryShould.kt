@@ -20,7 +20,7 @@ class PopularMoviesRepositoryShould {
     @Test
     fun `Get popular movies from remote`(){
         val remote = mock<PopularMoviesRemote> {
-            on { getPopularMovies() } doReturn Result.Success(response)
+            onBlocking { getPopularMovies() } doReturn Result.Success(response)
         }
         val repository = PopularMoviesRepositoryImpl(remote)
 
@@ -35,7 +35,7 @@ class PopularMoviesRepositoryShould {
         val errorMessage = "error"
         val errorResponse = ErrorResponse(errorMessage)
         val remote = mock<PopularMoviesRemote> {
-            on { getPopularMovies() } doReturn Result.Failure(errorResponse)
+            onBlocking { getPopularMovies() } doReturn Result.Failure(errorResponse)
         }
         val repository = PopularMoviesRepositoryImpl(remote)
 

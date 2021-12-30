@@ -33,7 +33,7 @@ class BaseRemoteShould {
     private val errorResponse = ErrorResponse(errorMessage)
 
     @Test
-    fun `Return error response on failure call Movie Details`(){
+    suspend fun `Return error response on failure call Movie Details`(){
         val response = Response.error<MovieDetailsResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
             on { retrieveMovie(movieId, apiKey) }.doReturn(Calls.response(response))
@@ -45,7 +45,7 @@ class BaseRemoteShould {
     }
 
     @Test
-    fun `Return error response on failure call Popular Movies`(){
+    suspend fun `Return error response on failure call Popular Movies`(){
         val response = Response.error<PopularMovieResponse>(errorCode, ResponseBody.create(MediaType.parse("application/json"), errorsJson))
         val remoteCalls = mock<PopularMoviesRemoteCalls> {
             on { retrievePopularMovies(apiKey) }.doReturn(Calls.response(response))
@@ -57,7 +57,7 @@ class BaseRemoteShould {
     }
 
     @Test
-    fun `Return error response on exception`(){
+    suspend fun `Return error response on exception`(){
         val remoteCalls = mock<MovieDetailsRemoteCalls> {
             on { retrieveMovie(movieId, apiKey) } doAnswer { throw Exception(errorMessage) }
         }

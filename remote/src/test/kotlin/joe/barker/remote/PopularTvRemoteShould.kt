@@ -15,7 +15,7 @@ class PopularTvRemoteShould {
     private val response = PopularTvResponse(MediaDetailsRemoteTestProvider.tvResponseList)
 
     @Test
-    fun `Return tv show details response on successful call`(){
+    suspend fun `Return tv show details response on successful call`(){
         val remoteCalls = mock<PopularTvRemoteCalls> {
             on { retrievePopularTvShows(apiKey) }.doReturn(Calls.response(response))
         }

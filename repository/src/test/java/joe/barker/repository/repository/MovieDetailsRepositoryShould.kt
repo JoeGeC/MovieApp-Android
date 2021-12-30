@@ -36,7 +36,7 @@ class MovieDetailsRepositoryShould {
             on { getMovie(MediaDetailsRepoTestProvider.id) } doReturn null
         }
         val remote = mock<MovieDetailsRemote> {
-            on { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn
+            onBlocking { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn
                     Result.Success(MediaDetailsRepoTestProvider.movieDetailsResponse)
         }
         val repository = MovieDetailsRepositoryImpl(local, remote)
@@ -56,7 +56,7 @@ class MovieDetailsRepositoryShould {
         val errorMessage = "error"
         val errorResponse = ErrorResponse(errorMessage)
         val remote = mock<MovieDetailsRemote> {
-            on { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn Result.Failure(errorResponse)
+            onBlocking { getMovieDetails(MediaDetailsRepoTestProvider.id) } doReturn Result.Failure(errorResponse)
         }
         val repository = MovieDetailsRepositoryImpl(local, remote)
 

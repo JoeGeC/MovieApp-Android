@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
 
-class PopularTvViewModelShould : PopularViewModelShould() {
+class PopularTvViewModelShould : PopularListItemAsserter() {
     private val tvList = listOf(MediaTestProvider.tvDetails1, MediaTestProvider.tvDetails2)
 
     @Test
@@ -42,18 +42,5 @@ class PopularTvViewModelShould : PopularViewModelShould() {
         runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
-    }
-
-    @Test
-    fun `Do nothing if already has movies`(){
-        val useCase = mock<PopularTvUseCase>()
-        val viewModel = PopularTvViewModel(useCase)
-        val movie = PopularListItemModel(1, "", "", 1.1f, "", "")
-        viewModel.popularList = listOf(movie)
-
-        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
-
-        verifyBlocking(useCase, never()) { getPopularTvShows() }
-        Assertions.assertEquals(listOf(movie), viewModel.popularList)
     }
 }
