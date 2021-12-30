@@ -27,28 +27,15 @@ fun TvMovieSwitch(isMovie: Boolean, modifier: Modifier, onClick: () -> Unit){
             interactionSource = remember { MutableInteractionSource() },
             onClick = onClick)
     ){
-        if(isMovie) Box(Modifier.switchIconModifier(cornerSize, 32.dp))
-        else Box(Modifier.switchIconModifier(cornerSize, 17.dp).align(Alignment.CenterEnd))
-        Row(Modifier.border(
-                width = 1.dp,
-                color = colorResource(id = R.color.dark_blue),
-                shape = RoundedCornerShape(cornerSize)
-            )
-        ) {
-            Text(
-                text = "Movies",
-                color = colorResource(R.color.teal_200),
-                modifier = Modifier
-                    .padding(6.dp)
-            )
-            Text(
-                text = "TV",
-                color = colorResource(R.color.teal_200),
-                modifier = Modifier
-                    .padding(6.dp)
-            )
-        }
+        SwitchIcon(isMovie, cornerSize, Modifier.align(Alignment.CenterEnd))
+        SwitchOptions(cornerSize)
     }
+}
+
+@Composable
+private fun SwitchIcon(isMovie: Boolean, cornerSize: Dp, endAlignment: Modifier) {
+    if (isMovie) Box(Modifier.switchIconModifier(cornerSize, 32.dp))
+    else Box(Modifier.switchIconModifier(cornerSize, 17.dp).then(endAlignment))
 }
 
 private fun Modifier.switchIconModifier(cornerSize: Dp, padding: Dp) = composed { Modifier
@@ -58,3 +45,26 @@ private fun Modifier.switchIconModifier(cornerSize: Dp, padding: Dp) = composed 
     .fillMaxHeight()
     .padding(horizontal = padding) }
 
+@Composable
+private fun SwitchOptions(cornerSize: Dp) {
+    Row(
+        Modifier.border(
+            width = 1.dp,
+            color = colorResource(id = R.color.dark_blue),
+            shape = RoundedCornerShape(cornerSize)
+        )
+    ) {
+        Text(
+            text = "Movies",
+            color = colorResource(R.color.teal_200),
+            modifier = Modifier
+                .padding(6.dp)
+        )
+        Text(
+            text = "TV",
+            color = colorResource(R.color.teal_200),
+            modifier = Modifier
+                .padding(6.dp)
+        )
+    }
+}
