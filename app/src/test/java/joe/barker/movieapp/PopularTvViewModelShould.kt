@@ -1,10 +1,10 @@
 package joe.barker.movieapp
 
+import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
 import joe.barker.domain.boundary.useCase.PopularTvUseCase
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.movieapp.popular.PopularListItemModel
-import joe.barker.movieapp.popular.PopularTvViewModel
+import joe.barker.movieapp.popular.PopularViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
@@ -13,6 +13,7 @@ import org.mockito.kotlin.*
 
 class PopularTvViewModelShould : PopularListItemAsserter() {
     private val tvList = listOf(MediaTestProvider.tvDetails1, MediaTestProvider.tvDetails2)
+    private val movieUseCase = mock<PopularMoviesUseCase>()
 
     @Test
     fun `Get popular TV from use case`(){
@@ -20,9 +21,9 @@ class PopularTvViewModelShould : PopularListItemAsserter() {
         val tvUseCase = mock<PopularTvUseCase> {
             onBlocking { getPopularTvShows() }.doReturn(result)
         }
-        val viewModel = PopularTvViewModel(tvUseCase)
+        val viewModel = PopularViewModel(movieUseCase, tvUseCase)
 
-        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchTvShows(Dispatchers.Unconfined) }
 
         assertListItem(MediaTestProvider.popularTvModel1, viewModel.popularList?.get(0))
         assertListItem(MediaTestProvider.popularTvModel2, viewModel.popularList?.get(1))
@@ -37,9 +38,9 @@ class PopularTvViewModelShould : PopularListItemAsserter() {
         val tvUseCase = mock<PopularTvUseCase> {
             onBlocking { getPopularTvShows() }.doReturn(result)
         }
-        val viewModel = PopularTvViewModel(tvUseCase)
+        val viewModel = PopularViewModel(movieUseCase, tvUseCase)
 
-        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchTvShows(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
     }

@@ -1,18 +1,20 @@
 package joe.barker.movieapp
 
 import joe.barker.domain.boundary.useCase.PopularMoviesUseCase
+import joe.barker.domain.boundary.useCase.PopularTvUseCase
 import joe.barker.domain.entity.Either
 import joe.barker.domain.entity.ErrorEntity
-import joe.barker.movieapp.popular.PopularListItemModel
-import joe.barker.movieapp.popular.PopularMoviesViewModel
+import joe.barker.movieapp.popular.PopularViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import org.mockito.kotlin.*
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
 class PopularMoviesViewModelShould : PopularListItemAsserter() {
     private val movieList = listOf(MediaTestProvider.movieDetails1, MediaTestProvider.movieDetails2)
+    private val tvUseCase = mock<PopularTvUseCase>()
 
     @Test
     fun `Get popular movies from use case`(){
@@ -20,9 +22,9 @@ class PopularMoviesViewModelShould : PopularListItemAsserter() {
         val movieUseCase = mock<PopularMoviesUseCase> {
             onBlocking { getPopularMovies() }.doReturn(result)
         }
-        val viewModel = PopularMoviesViewModel(movieUseCase)
+        val viewModel = PopularViewModel(movieUseCase, tvUseCase)
 
-        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchMovies(Dispatchers.Unconfined) }
 
         assertListItem(MediaTestProvider.popularMovieModel1, viewModel.popularList?.get(0))
         assertListItem(MediaTestProvider.popularMovieModel2, viewModel.popularList?.get(1))
@@ -37,9 +39,9 @@ class PopularMoviesViewModelShould : PopularListItemAsserter() {
         val useCase = mock<PopularMoviesUseCase>{
             onBlocking { getPopularMovies() }.doReturn(result)
         }
-        val viewModel = PopularMoviesViewModel(useCase)
+        val viewModel = PopularViewModel(useCase, tvUseCase)
 
-        runBlocking { viewModel.fetchPopular(Dispatchers.Unconfined) }
+        runBlocking { viewModel.fetchMovies(Dispatchers.Unconfined) }
 
         Assertions.assertTrue(viewModel.error.value)
     }

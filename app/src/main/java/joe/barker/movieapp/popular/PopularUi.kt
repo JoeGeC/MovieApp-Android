@@ -9,8 +9,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -25,15 +28,21 @@ import joe.barker.movieapp.R
 import joe.barker.movieapp.ui.RatingCircle
 
 @Composable
-fun PopularUi(itemList: List<PopularListItemModel>, navController: NavHostController) {
+fun PopularUi(viewModel: PopularViewModel, navController: NavHostController) {
+    val isMovies by viewModel.isMovies.collectAsState()
     Column {
-        Text(text = "What's Popular",
-            fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
-            modifier = Modifier.padding(8.dp),
-            color = MaterialTheme.colors.primary)
+        Row {
+            Text(text = "What's Popular",
+                fontWeight = FontWeight.Bold,
+                fontSize = 32.sp,
+                modifier = Modifier.padding(8.dp),
+                color = MaterialTheme.colors.primary)
+            Switch(
+                checked = isMovies,
+                onCheckedChange = { viewModel.onSwitch() })
+        }
         LazyRow {
-            items(itemList) { movie ->
+            items(viewModel.popularList!!) { movie ->
                 MovieListItem(movie, navController)
             }
         }
