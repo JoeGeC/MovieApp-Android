@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -26,8 +27,8 @@ fun TvMovieSwitch(isMovie: Boolean, modifier: Modifier, onClick: () -> Unit){
             interactionSource = remember { MutableInteractionSource() },
             onClick = onClick)
     ){
-        if(isMovie) Box(switchIconModifier(cornerSize, 32.dp))
-        else Box(switchIconModifier(cornerSize, 17.dp).align(Alignment.CenterEnd))
+        if(isMovie) Box(Modifier.switchIconModifier(cornerSize, 32.dp))
+        else Box(Modifier.switchIconModifier(cornerSize, 17.dp).align(Alignment.CenterEnd))
         Row(Modifier.border(
                 width = 1.dp,
                 color = colorResource(id = R.color.dark_blue),
@@ -50,11 +51,10 @@ fun TvMovieSwitch(isMovie: Boolean, modifier: Modifier, onClick: () -> Unit){
     }
 }
 
-@Composable
-private fun switchIconModifier(cornerSize: Dp, padding: Dp) = Modifier
+private fun Modifier.switchIconModifier(cornerSize: Dp, padding: Dp) = composed { Modifier
     .background(
         color = colorResource(R.color.dark_blue),
         shape = RoundedCornerShape(cornerSize))
     .fillMaxHeight()
-    .padding(horizontal = padding)
+    .padding(horizontal = padding) }
 

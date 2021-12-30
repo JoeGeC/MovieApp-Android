@@ -21,16 +21,27 @@ import joe.barker.movieapp.ui.TvMovieSwitch
 fun PopularUi(viewModel: PopularViewModel, content: @Composable () -> Unit) {
     val isMovies by viewModel.isMovies.collectAsState()
     Column {
-        Box(
-            Modifier
-                .fillMaxWidth()
-                .padding(8.dp)) {
-            Text(text = "What's Popular",
-                fontWeight = FontWeight.Bold,
-                fontSize = 32.sp,
-                color = MaterialTheme.colors.primary)
-            TvMovieSwitch(isMovies, Modifier.align(Alignment.CenterEnd)) { viewModel.onSwitch() }
-        }
+        Header(isMovies, viewModel)
         content()
+    }
+}
+
+@Composable
+private fun Header(
+    isMovies: Boolean,
+    viewModel: PopularViewModel
+) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text(
+            text = "What's Popular",
+            fontWeight = FontWeight.Bold,
+            fontSize = 32.sp,
+            color = MaterialTheme.colors.primary
+        )
+        TvMovieSwitch(isMovies, Modifier.align(Alignment.CenterEnd)) { viewModel.onSwitch() }
     }
 }
