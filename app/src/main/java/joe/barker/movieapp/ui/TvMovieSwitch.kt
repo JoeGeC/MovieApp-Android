@@ -1,0 +1,60 @@
+package joe.barker.movieapp.ui
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import joe.barker.movieapp.R
+
+@Composable
+fun TvMovieSwitch(isMovie: Boolean, modifier: Modifier, onClick: () -> Unit){
+    val cornerSize = 20.dp
+    Box(modifier
+        .height(IntrinsicSize.Max)
+        .clickable(
+            indication = null,
+            interactionSource = remember { MutableInteractionSource() },
+            onClick = onClick)
+    ){
+        if(isMovie) Box(switchIconModifier(cornerSize, 32.dp))
+        else Box(switchIconModifier(cornerSize, 17.dp).align(Alignment.CenterEnd))
+        Row(Modifier.border(
+                width = 1.dp,
+                color = colorResource(id = R.color.dark_blue),
+                shape = RoundedCornerShape(cornerSize)
+            )
+        ) {
+            Text(
+                text = "Movies",
+                color = colorResource(R.color.teal_200),
+                modifier = Modifier
+                    .padding(6.dp)
+            )
+            Text(
+                text = "TV",
+                color = colorResource(R.color.teal_200),
+                modifier = Modifier
+                    .padding(6.dp)
+            )
+        }
+    }
+}
+
+@Composable
+private fun switchIconModifier(cornerSize: Dp, padding: Dp) = Modifier
+    .background(
+        color = colorResource(R.color.dark_blue),
+        shape = RoundedCornerShape(cornerSize))
+    .fillMaxHeight()
+    .padding(horizontal = padding)
+

@@ -9,7 +9,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,20 +25,20 @@ import coil.compose.rememberImagePainter
 import joe.barker.movieapp.extension.toImageUrl
 import joe.barker.movieapp.R
 import joe.barker.movieapp.ui.RatingCircle
+import joe.barker.movieapp.ui.TvMovieSwitch
 
 @Composable
 fun PopularUi(viewModel: PopularViewModel, navController: NavHostController) {
     val isMovies by viewModel.isMovies.collectAsState()
-    Column {
-        Row {
+    Column() {
+        Box(Modifier
+            .fillMaxWidth()
+            .padding(8.dp)) {
             Text(text = "What's Popular",
                 fontWeight = FontWeight.Bold,
                 fontSize = 32.sp,
-                modifier = Modifier.padding(8.dp),
                 color = MaterialTheme.colors.primary)
-            Switch(
-                checked = isMovies,
-                onCheckedChange = { viewModel.onSwitch() })
+            TvMovieSwitch(isMovies, Modifier.align(Alignment.CenterEnd)) { viewModel.onSwitch() }
         }
         LazyRow {
             items(viewModel.popularList!!) { movie ->
