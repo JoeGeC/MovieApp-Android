@@ -38,12 +38,14 @@ private fun SwitchIcon(isMovie: Boolean, cornerSize: Dp, endAlignment: Modifier)
     else Box(Modifier.switchIconModifier(cornerSize, 17.dp).then(endAlignment))
 }
 
-private fun Modifier.switchIconModifier(cornerSize: Dp, padding: Dp) = composed { Modifier
-    .background(
-        color = colorResource(R.color.dark_blue),
-        shape = RoundedCornerShape(cornerSize))
-    .fillMaxHeight()
-    .padding(horizontal = padding) }
+private fun Modifier.switchIconModifier(cornerSize: Dp, padding: Dp) = composed {
+    Modifier
+        .background(
+            color = colorResource(R.color.dark_blue),
+            shape = RoundedCornerShape(cornerSize))
+        .fillMaxHeight()
+        .padding(horizontal = padding)
+}
 
 @Composable
 private fun SwitchOptions(cornerSize: Dp) {
