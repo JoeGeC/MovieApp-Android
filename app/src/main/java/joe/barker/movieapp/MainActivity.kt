@@ -3,7 +3,16 @@ package joe.barker.movieapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -16,6 +25,7 @@ import joe.barker.movieapp.details.MediaDetailsPage
 import joe.barker.movieapp.details.MovieDetailsViewModel
 import joe.barker.movieapp.details.TvDetailsViewModel
 import joe.barker.movieapp.popular.PopularPage
+import joe.barker.movieapp.ui.WelcomeUi
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,36 +34,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MovieAppTheme {
-                NavigationComponent()
+                Column {
+                    WelcomeUi()
+                    NavigationComponent()
+                }
             }
-        }
-    }
-}
-
-@Composable
-fun NavigationComponent() {
-    val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {    }
-    val navController = rememberNavController()
-    NavHost(
-        navController = navController,
-        startDestination = "popular"
-    ) {
-        composable("popular") {
-            PopularPage(navController)
-        }
-        composable(
-            route = "movieDetails/{movieId}",
-            arguments = listOf(navArgument("movieId") { type = NavType.LongType })
-        ) { backStackEntry ->
-            val viewModel = viewModel<MovieDetailsViewModel>(viewModelStoreOwner = viewModelStoreOwner)
-            MediaDetailsPage(backStackEntry.arguments?.getLong("movieId"), viewModel)
-        }
-        composable(
-            route = "tvDetails/{tvShowId}",
-            arguments = listOf(navArgument("tvShowId") { type = NavType.LongType })
-        ) { backStackEntry ->
-            val viewModel = viewModel<TvDetailsViewModel>(viewModelStoreOwner = viewModelStoreOwner)
-            MediaDetailsPage(backStackEntry.arguments?.getLong("tvShowId"), viewModel)
         }
     }
 }

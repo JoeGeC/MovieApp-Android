@@ -34,12 +34,12 @@ private fun Header(
     Box(
         Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(10.dp)
     ) {
         Text(
             text = "What's Popular",
             fontWeight = FontWeight.Bold,
-            fontSize = 32.sp,
+            fontSize = 24.sp,
             color = MaterialTheme.colors.primary
         )
         TvMovieSwitch(isMovies, Modifier.align(Alignment.CenterEnd)) { viewModel.onSwitch() }
