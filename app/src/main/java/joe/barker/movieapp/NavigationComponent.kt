@@ -1,8 +1,11 @@
 package joe.barker.movieapp
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,6 +16,7 @@ import joe.barker.movieapp.details.MovieDetailsViewModel
 import joe.barker.movieapp.details.TvDetailsViewModel
 import joe.barker.movieapp.popular.PopularPage
 
+@ExperimentalAnimationApi
 @Composable
 fun NavigationComponent() {
     val viewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {    }
