@@ -3,6 +3,7 @@ package joe.barker.movieapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -28,6 +29,7 @@ import joe.barker.movieapp.popular.PopularPage
 import joe.barker.movieapp.ui.WelcomeUi
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
+@ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
