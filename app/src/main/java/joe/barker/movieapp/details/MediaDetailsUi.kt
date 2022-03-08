@@ -1,7 +1,7 @@
 package joe.barker.movieapp.details
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.skydoves.landscapist.glide.GlideImage
 import joe.barker.movieapp.R
@@ -30,6 +31,7 @@ import joe.barker.movieapp.extension.toImageUrl
 import joe.barker.movieapp.ui.RatingCircle
 import joe.barker.movieapp.ui.TextWithHeader
 
+@ExperimentalCoilApi
 @Preview
 @Composable
 fun MediaDetailsUi() {
@@ -37,6 +39,7 @@ fun MediaDetailsUi() {
     MediaDetailsUi(model)
 }
 
+@ExperimentalCoilApi
 @Composable
 fun MediaDetailsUi(model: MediaDetailsModel) {
     Surface(color = MaterialTheme.colors.background) {
@@ -45,8 +48,9 @@ fun MediaDetailsUi(model: MediaDetailsModel) {
     }
 }
 
+@ExperimentalCoilApi
 @Composable
-private fun Backdrop(backdropPath: String?) {
+fun Backdrop(backdropPath: String?) {
     if(backdropPath == null) return
     Image(
         painter = rememberImagePainter(
@@ -95,14 +99,10 @@ private fun MediaPoster(posterPath: String?) {
 
 @Composable
 private fun MediaDetailsSide(media: MediaDetailsModel) {
-    val ratingCircleModifier = Modifier
-        .padding(end = 8.dp, top = 8.dp, bottom = 8.dp)
-        .size(48.dp)
-        .background(Color.Black, shape = CircleShape)
     Column {
         TitleText(media.title, media.releaseYear)
         ReleaseDateText(media.releaseDate)
-        UserScore(media, ratingCircleModifier)
+        UserScore(media)
         TaglineText(media.tagline)
     }
 }
@@ -128,8 +128,12 @@ fun ReleaseDateText(releaseDate: String) {
 }
 
 @Composable
-private fun UserScore(media: MediaDetailsModel, ratingCircleModifier: Modifier) {
+private fun UserScore(media: MediaDetailsModel) {
     Row{
+        val ratingCircleModifier = Modifier
+            .padding(end = 8.dp, top = 8.dp, bottom = 8.dp)
+            .size(48.dp)
+            .background(Color.Black, shape = CircleShape)
         RatingCircle(media.score, ratingCircleModifier)
         Text(
             text = "User\nScore",

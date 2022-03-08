@@ -4,18 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.layout.*
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import joe.barker.movieapp.details.MediaDetailsPage
-import joe.barker.movieapp.details.MovieDetailsViewModel
-import joe.barker.movieapp.details.TvDetailsViewModel
-import joe.barker.movieapp.popular.PopularPage
-import joe.barker.movieapp.ui.WelcomeUi
+import coil.annotation.ExperimentalCoilApi
 import joe.barker.movieapp.ui.theme.MovieAppTheme
 
+@ExperimentalCoilApi
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

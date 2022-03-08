@@ -50,4 +50,6 @@ class PopularViewModel(
             _isLoading.value = false
         }, dispatcher)
     }
+
+    fun welcomeBackgroundPath(): String? = popularList?.random()?.backdropPath
 }

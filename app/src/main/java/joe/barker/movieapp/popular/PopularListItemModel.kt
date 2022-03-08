@@ -9,6 +9,7 @@ data class PopularListItemModel(
     val releaseYear: String,
     val score: Float,
     val posterPath: String,
+    val backdropPath: String,
     val type: String
 ) : AutoCompleteEntity {
     override fun filter(query: String): Boolean = title.contains(query, true)
@@ -21,6 +22,7 @@ internal fun List<MediaDetails>.convert(): List<PopularListItemModel> = this.map
         it.releaseDate.year.toString(),
         it.score,
         it.posterPath,
+        it.backdropPath,
         it.type.toString().lowercase()
     )
 }

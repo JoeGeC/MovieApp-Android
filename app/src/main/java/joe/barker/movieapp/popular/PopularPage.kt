@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.*
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import coil.annotation.ExperimentalCoilApi
 import joe.barker.movieapp.ui.ErrorUi
 import joe.barker.movieapp.ui.LoadingUi
 import joe.barker.movieapp.ui.MediaList
 import joe.barker.movieapp.ui.WelcomeUi
 
+@ExperimentalCoilApi
 @ExperimentalAnimationApi
 @Composable
 fun PopularPage(navController: NavHostController) {
@@ -18,7 +20,7 @@ fun PopularPage(navController: NavHostController) {
     val isLoading by viewModel.isLoading.collectAsState()
     val isError by viewModel.error.collectAsState()
     Column {
-        WelcomeUi()
+        WelcomeUi(viewModel.welcomeBackgroundPath())
         when {
             isLoading -> PopularUi(viewModel) { LoadingUi() }
             isError -> PopularUi(viewModel) { ErrorUi() }
